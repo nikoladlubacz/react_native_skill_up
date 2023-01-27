@@ -20,7 +20,7 @@ export default function App() {
             headerTintColor: Colors.green200,
             headerTitleAlign: "center",
             headerTitleStyle: {
-              fontSize:30
+              fontSize: 30,
             },
           }}
         >
@@ -31,7 +31,13 @@ export default function App() {
               title: "Drink Advisor",
             }}
           />
-          <Stack.Screen name="DrinkList" component={DrinkList} />
+          <Stack.Screen
+            name="DrinkList"
+            component={DrinkList}
+            options={{
+              contentStyle: { backgroundColor: Colors.green600 },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
