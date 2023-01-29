@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./screens/WelcomeScreen";
-import DrinkList from "./screens/DrinkList";
+import DrinksScreen from "./screens/DrinksScreen";
 import { RootStackParamList } from "./util/types";
 import Colors from "./constants/colors";
 
@@ -32,8 +32,8 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="DrinkList"
-            component={DrinkList}
+            name="DrinksScreen"
+            component={DrinksScreen}
             options={{
               contentStyle: { backgroundColor: Colors.green600 },
             }}

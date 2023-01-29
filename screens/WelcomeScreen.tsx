@@ -9,7 +9,7 @@ type WelcomeScreenProps = NativeStackScreenProps<
 
 function WelcomeScreen({ navigation }: WelcomeScreenProps) {
   function pressHandler() {
-    navigation.navigate("DrinkList");
+    navigation.navigate("DrinksScreen");
   }
 
   return (

@@ -1,4 +1,5 @@
 export type RootStackParamList = {
   WelcomeScreen: undefined;
-  DrinkList: undefined;
+  DrinksScreen: undefined;
+  DrinkDetailScreen:undefined;
 };
