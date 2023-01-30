@@ -8,7 +8,13 @@ import {
 import Colors from "../constants/colors";
 import Drink from "../models/drink";
 
-function DrinkGridTile({ name, image }: Drink, onPress:void) {
+type Props = {
+  name: string;
+  image: string;
+  onPress: () => void;
+};
+
+function DrinkGridTile({ name, image, onPress }: Props) {
   return (
     <View style={styles.gridItem}>
       <ImageBackground
@@ -17,7 +23,14 @@ function DrinkGridTile({ name, image }: Drink, onPress:void) {
         style={styles.rootScreen}
         imageStyle={styles.backgroundImage}
       >
-        <Pressable>
+        <Pressable
+          android_ripple={{ color: Colors.green800 }}
+          style={({ pressed }) => [
+            styles.button,
+            pressed ? styles.buttonPressed : null,
+          ]}
+          onPress={onPress}
+        >
           <View style={styles.innerContainer}>
             <Text style={styles.title}>{name}</Text>
           </View>
@@ -42,6 +55,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
     overflow: "hidden",
+  },
+  button: {
+    flex: 1,
+  },
+  buttonPressed: {
+    opacity: 0.5,
   },
   rootScreen: {
     width: "100%",

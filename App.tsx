@@ -4,8 +4,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import DrinksScreen from "./screens/DrinksScreen";
+import DrinkDetailScreen from "./screens/DrinkDetailScreen";
 import { RootStackParamList } from "./util/types";
 import Colors from "./constants/colors";
+import Drink from "./models/drink";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -35,6 +37,14 @@ export default function App() {
             name="DrinksScreen"
             component={DrinksScreen}
             options={{
+              contentStyle: { backgroundColor: Colors.green600 },
+            }}
+          />
+          <Stack.Screen
+            name="DrinkDetailScreen"
+            component={DrinkDetailScreen}
+            options={{
+              title: "Drink Details",
               contentStyle: { backgroundColor: Colors.green600 },
             }}
           />

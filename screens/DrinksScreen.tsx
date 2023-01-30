@@ -13,12 +13,21 @@ type DrinksScreenProps = NativeStackScreenProps<
 >;
 
 function DrinksScreen({ navigation }: DrinksScreenProps) {
-  function pressHandler() {
-    navigation.navigate("DrinkDetailScreen");
+  function renderCategoryItem(itemData: Drink) {
+    function pressHandler() {
+      navigation.navigate("DrinkDetailScreen", { drinkId: itemData.id });
+    }
+    return (
+      <DrinkGridTile
+        name={itemData.name}
+        image={itemData.image}
+        onPress={pressHandler}
+      />
+    );
   }
 
   return (
-    <View style ={styles.appContainer}>
+    <View style={styles.appContainer}>
       <View>
         <FlatList
           horizontal={true}
@@ -31,15 +40,11 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
       <View>
         <FlatList
           data={Drinks}
-          renderItem={({ item }: ListRenderItemInfo<Drink>) => (
-            <DrinkGridTile
-              id={item.id}
-              name={item.name}
-              image={item.image}
-              instruction={item.instruction}
-            />
-          )}
+          keyExtractor={(item: Drink, index: number) => item.name}
           numColumns={2}
+          renderItem={({ item }: ListRenderItemInfo<Drink>) =>
+            renderCategoryItem(item)
+          }
         />
       </View>
     </View>
