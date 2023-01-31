@@ -8,10 +8,9 @@ type Props = {
   instruction: string;
 };
 
-function MealItem({ id, name, image, instruction }: Props) {
+function MealItem({ image, instruction }: Props) {
   return (
     <View>
-      <Text style={styles.title}>{name}</Text>
       <Image style={styles.image} source={{ uri: image }} />
       <Text style={styles.instruction}>{instruction}</Text>
     </View>
@@ -21,13 +20,6 @@ function MealItem({ id, name, image, instruction }: Props) {
 export default MealItem;
 
 const styles = StyleSheet.create({
-  title: {
-    fontWeight: "bold",
-    fontSize: 24,
-    margin: 8,
-    textAlign: "center",
-    color: Colors.grey800,
-  },
   image: {
     width: "100%",
     height: 350,
