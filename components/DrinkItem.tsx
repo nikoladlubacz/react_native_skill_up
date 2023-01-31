@@ -8,7 +8,7 @@ type Props = {
   instruction: string;
 };
 
-function MealItem({ image, instruction }: Props) {
+function DrinkItem({ image, instruction }: Props) {
   return (
     <View>
       <Image style={styles.image} source={{ uri: image }} />
@@ -17,7 +17,7 @@ function MealItem({ image, instruction }: Props) {
   );
 }
 
-export default MealItem;
+export default DrinkItem;
 
 const styles = StyleSheet.create({
   image: {
