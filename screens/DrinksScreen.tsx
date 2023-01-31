@@ -37,7 +37,7 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
           )}
         />
       </View>
-      <View style ={styles.drinksContainer}>
+      <View style={styles.drinksContainer}>
         <FlatList
           data={Drinks}
           keyExtractor={(item: Drink, index: number) => item.name}
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  drinksContainer:{
-    marginBottom:80
-  }
+  drinksContainer: {
+    marginBottom: 60,
+  },
 });

@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useContext } from "react";
 import { View } from "react-native";
 import { RootStackParamList } from "../util/types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -7,21 +7,27 @@ import DrinkItem from "../components/DrinkItem";
 import Drink from "../models/drink";
 import IconButton from "../components/IconButton";
 import Colors from "../constants/colors";
+import { FavoritesContext } from "../store/favoritesContext";
 
-type DrinkDetailProps = NativeStackScreenProps<
-  RootStackParamList,
-  "DrinkDetailScreen"
->;
+// type DrinkDetailProps = NativeStackScreenProps<
+//   RootStackParamList,
+//   "DrinkDetailScreen"
+// >;
 
-function DrinkDetailScreen({ route, navigation }: DrinkDetailProps) {
+function DrinkDetailScreen({ route, navigation }) {
+  const favoriteDrinksCtx = useContext(FavoritesContext);
   const drinkId = route.params.drinkId;
 
-  const selectedDrink = Drinks.find(
-    (drinkItem: Drink) => drinkItem.id == drinkId
-  );
+  const selectedDrink = Drinks.find((drinkItem) => drinkItem.id === drinkId);
 
-  function headerButtonPressHandler() {
-    console.log("STAR");
+  const drinkIsFavorite = favoriteDrinksCtx.ids.includes(drinkId);
+
+  function changeFavoriteStatusHandler() {
+    if (drinkIsFavorite) {
+      favoriteDrinksCtx.removeFavorite(drinkId);
+    } else {
+      favoriteDrinksCtx.addFavorite(drinkId);
+    }
   }
 
   useLayoutEffect(() => {
@@ -30,14 +36,14 @@ function DrinkDetailScreen({ route, navigation }: DrinkDetailProps) {
       headerRight: () => {
         return (
           <IconButton
-            onPress={headerButtonPressHandler}
-            icon={"star"}
+            icon={drinkIsFavorite ? "star" : "star-outline"}
             color={Colors.green200}
+            onPress={changeFavoriteStatusHandler}
           />
         );
       },
     });
-  }, [navigation, headerButtonPressHandler]);
+  }, [navigation, changeFavoriteStatusHandler]);
 
   return (
     <View>
