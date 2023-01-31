@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, ListRenderItemInfo } from "react-native";
+import { View, StyleSheet, FlatList, ListRenderItemInfo, Text, ActivityIndicator } from "react-native";
 import DrinkGridTile from "../components/DrinkGridTile";
 import MenuItem from "../components/MenuItem";
 import { MenuLabels, Drinks } from "../data/data";
@@ -6,22 +6,43 @@ import Drink from "../models/drink";
 import Menu from "../models/menu";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../util/types";
+import { useEffect, useState } from "react";
 
 type DrinksScreenProps = NativeStackScreenProps<
   RootStackParamList,
   "DrinksScreen"
 >;
 
+
 function DrinksScreen({ navigation }: DrinksScreenProps) {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
   
-  function renderCategoryItem(itemData: Drink) {
+  const getDrinks = async () => {
+    try {
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin');
+      const json = await response.json();
+      console.log(json);
+      setData(json.drinks);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getDrinks();
+  }, []);
+  
+  function renderCategoryItem(id: number, name: string, image: string) {
     function pressHandler() {
-      navigation.navigate("DrinkDetailScreen", { drinkId: itemData.id });
+      // navigation.navigate("DrinkDetailScreen", { drinkId: id });
     }
     return (
       <DrinkGridTile
-        name={itemData.name}
-        image={itemData.image}
+        name={name}
+        image={image}
         onPress={pressHandler}
       />
     );
@@ -39,14 +60,23 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
         />
       </View>
       <View style={styles.drinksContainer}>
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
         <FlatList
-          data={Drinks}
-          keyExtractor={(item: Drink, index: number) => item.name}
+          data={data}
+          //keyExtractor={({idDrink}) => idDrink}
+          // keyExtractor={(item: Drink, index: number) => item.name}
           numColumns={2}
+          // renderItem={({item}) => (
+          //   <Text>
+          //     {item.strDrink}, {item.idDrink}
+          //   </Text>
+          // )}
           renderItem={({ item }: ListRenderItemInfo<Drink>) =>
-            renderCategoryItem(item)
+            renderCategoryItem(item.idDrink, item.strDrink, item.strDrinkThumb)
           }
-        />
+        />)}
       </View>
     </View>
   );
