@@ -6,7 +6,6 @@ import {
   ImageBackground,
 } from "react-native";
 import Colors from "../constants/colors";
-import Drink from "../models/drink";
 
 type Props = {
   name: string;

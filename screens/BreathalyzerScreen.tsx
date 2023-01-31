@@ -3,9 +3,6 @@ import { BottomTabParamList } from "../util/types";
 import {
   View,
   Text,
-  StyleSheet,
-  FlatList,
-  ListRenderItemInfo,
 } from "react-native";
 
 type BreathalyzerScreenProps = NativeStackScreenProps<
