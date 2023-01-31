@@ -13,6 +13,7 @@ type DrinksScreenProps = NativeStackScreenProps<
 >;
 
 function DrinksScreen({ navigation }: DrinksScreenProps) {
+  
   function renderCategoryItem(itemData: Drink) {
     function pressHandler() {
       navigation.navigate("DrinkDetailScreen", { drinkId: itemData.id });

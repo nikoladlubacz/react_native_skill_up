@@ -5,7 +5,8 @@ import { Drinks } from "../data/data";
 import DrinkGridTile from "../components/DrinkGridTile";
 
 
-function FavoritesScreen() {
+function FavoritesScreen({navigation}) {
+  
   const favoriteDrinksCtx = useContext(FavoritesContext);
   const favoriteDrinks = Drinks.filter((drink) =>
     favoriteDrinksCtx.ids.includes(drink.id)
