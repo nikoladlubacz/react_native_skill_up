@@ -3,7 +3,7 @@ import { NavigatorScreenParams } from "@react-navigation/native";
 export type RootStackParamList = {
   WelcomeScreen: undefined;
   DrinksScreen: undefined;
-  DrinkDetailScreen: { drinkId: number };
+  DrinkDetailScreen: { drinkId: number , drinkName:string};
 };
 
 export type BottomTabParamList = {

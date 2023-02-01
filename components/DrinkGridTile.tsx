@@ -8,12 +8,13 @@ import {
 import Colors from "../constants/colors";
 
 type Props = {
+  id: number;
   name: string;
   image: string;
   onPress: () => void;
 };
 
-function DrinkGridTile({ name, image, onPress }: Props) {
+function DrinkGridTile({  name, image, onPress }: Props) {
   return (
     <View style={styles.gridItem}>
       <ImageBackground
