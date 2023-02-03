@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
-import Input from "./Input";
+import { Input, MultipleInput } from "./Input";
 import { CheckBox } from "react-native-elements";
 
 import { useState } from "react";
+import Colors from "../../constants/colors";
+// import MultipleInput from "./MultipleInput";
 
 function BreathalyzerForm() {
   const [male, setMale] = useState(false);
@@ -21,15 +23,17 @@ function BreathalyzerForm() {
   function inputChangedHandle() {}
   return (
     <View>
-      <Text>How Drunk Are You ?</Text>
       <Input
-        label="Weight"
+        label="Your name:"
+        measurementUnit=""
         textInputConfig={{
-          keyboardType: "number-pad",
+          keyboardType: "default-pad",
           onChangeText: inputChangedHandle,
+          autoCapitalize: "words",
         }}
       />
-      <Text>Choose your gender:</Text>
+
+      <Text style={styles.label}>Choose your gender:</Text>
       <View style={styles.radioButtonContainer}>
         <CheckBox
           title="Male"
@@ -37,8 +41,12 @@ function BreathalyzerForm() {
           checked={male}
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
+          checkedColor={Colors.green200}
           onPress={genderMale}
-          containerStyle={{ backgroundColor: "transparent", borderColor:"transparent" }}
+          containerStyle={{
+            backgroundColor: "transparent",
+            borderColor: "transparent",
+          }}
         />
         <CheckBox
           title="Female"
@@ -46,41 +54,50 @@ function BreathalyzerForm() {
           checked={female}
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
+          checkedColor={Colors.green200}
           onPress={genderFemale}
-          containerStyle={{ backgroundColor: "transparent", borderColor:"transparent" }}
+          containerStyle={{
+            backgroundColor: "transparent",
+            borderColor: "transparent",
+          }}
         />
       </View>
       <Input
-        label="amount of alcohol consumed"
+        label="Your weight"
+        measurementUnit="kg"
         textInputConfig={{
           keyboardType: "number-pad",
           onChangeText: inputChangedHandle,
         }}
       />
-      <Input
-        label="strenght of alcohol consumed"
-        textInputConfig={{
+      <MultipleInput
+        label="Enter the amount and strength of alcohol with you consumed"
+        textInputConfig1={{
           keyboardType: "number-pad",
           onChangeText: inputChangedHandle,
         }}
-      />
-      <Input
-        label="It's been a while since drinking alcohol"
-        textInputConfig={{
+        textInputConfig2={{
           keyboardType: "number-pad",
           onChangeText: inputChangedHandle,
         }}
-      />
-      <Input
+        measurementUnit1="ml"
+        measurementUnit2="%"
+      ></MultipleInput>
+      <MultipleInput
         label="When you started drinking alcohol"
-        textInputConfig={{
+        textInputConfig1={{
           placeholder: "YYYY-MM-DD",
+          maxLength: 10,
+          onChangeText: () => {},
+        }}
+        textInputConfig2={{
+          placeholder: "HH-MM",
           maxLength: 10,
           onChangeText: () => {},
         }}
       />
       <Input
-        label="Email"
+        label="Your email"
         textInputConfig={{
           keyboardType: "default-pad",
           onChangeText: inputChangedHandle,
@@ -95,5 +112,11 @@ export default BreathalyzerForm;
 const styles = StyleSheet.create({
   radioButtonContainer: {
     flexDirection: "row",
+  },
+  label: {
+    color: Colors.green200,
+    fontSize: 12,
+    // color:
+    margimBottom: 4,
   },
 });
