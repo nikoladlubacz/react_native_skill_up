@@ -4,6 +4,7 @@ import {
   View,
   Text,
 } from "react-native";
+import BreathalyzerForm from "../components/Breathalyzer/BreathalyzerForm";
 
 type BreathalyzerScreenProps = NativeStackScreenProps<
   BottomTabParamList,
@@ -13,7 +14,7 @@ type BreathalyzerScreenProps = NativeStackScreenProps<
 function BreathalyzerScreen({ navigation }: BreathalyzerScreenProps) {
   return (
     <View>
-      <Text>Breathalyzer</Text>
+      <BreathalyzerForm/>
     </View>
   );
 }
