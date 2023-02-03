@@ -14,7 +14,6 @@ import Menu from "../models/menu";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../util/types";
 import { useEffect, useState } from "react";
-import { fetchDrinks } from "../util/http";
 
 type DrinksScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -44,22 +43,15 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
     getDrinks();
   }, []);
 
-  // useEffect(() => {
-  //   const getDrinks = async () => {
-  //     const drinks = fetchDrinks();
-  //     setData(drinks);
-  //     // setLoading(false)
-  //     // console.log(drinks);
-  //   };
-  //   getDrinks();
-  // }, []);
-
   function renderDrinkItem(id: number, name: string, image: string) {
     function pressHandler() {
-      navigation.navigate("DrinkDetailScreen", { drinkId: id , drinkName:name});
+      navigation.navigate("DrinkDetailScreen", {
+        drinkId: id,
+        drinkName: name,
+      });
     }
     return (
-        <DrinkGridTile id={id} name={name} image={image} onPress={pressHandler} />
+      <DrinkGridTile id={id} name={name} image={image} onPress={pressHandler} />
     );
   }
 
@@ -76,12 +68,10 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
       </View>
       <View style={styles.drinksContainer}>
         {isLoading ? (
-          <ActivityIndicator />
+          <ActivityIndicator size="large" style={styles.indicator} />
         ) : (
           <FlatList
             data={data}
-            //keyExtractor={({idDrink}) => idDrink}
-            // keyExtractor={(item: Drink, index: number) => item.name}
             numColumns={2}
             renderItem={({ item }: ListRenderItemInfo<Drink>) =>
               renderDrinkItem(item.idDrink, item.strDrink, item.strDrinkThumb)
@@ -100,6 +90,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   drinksContainer: {
-    marginBottom: 60,
+    marginBottom: 0,
+  },
+  indicator: {
+    marginTop: 200,
   },
 });
