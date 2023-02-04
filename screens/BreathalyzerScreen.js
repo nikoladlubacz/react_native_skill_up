@@ -4,21 +4,27 @@ import { useLayoutEffect, useContext } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 import BreathalyzerForm from "../components/Breathalyzer/BreathalyzerForm";
 import Colors from "../constants/colors";
+import React from "react";
 
-type BreathalyzerScreenProps = NativeStackScreenProps<
-  BottomTabParamList,
-  "BreathalyzerScreen"
->;
+// type BreathalyzerScreenProps = NativeStackScreenProps<
+//   BottomTabParamList,
+//   "BreathalyzerScreen"
+// >;
 
-function BreathalyzerScreen({ navigation }: BreathalyzerScreenProps) {
+function BreathalyzerScreen({ navigation }) {
+  
+  function checkHandler() {
+    console.log("klikniety");
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "How Drunk Are You ?",
     });
   });
   return (
-    <ScrollView style ={styles.appContainer}>
-      <BreathalyzerForm />
+    <ScrollView style={styles.appContainer}>
+      <BreathalyzerForm onSubmitBtn={checkHandler} />
     </ScrollView>
   );
 }
@@ -29,6 +35,6 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     padding: 16,
-    backgroundColor:Colors.green1000
+    backgroundColor: Colors.green1000,
   },
 });

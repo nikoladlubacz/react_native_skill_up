@@ -7,6 +7,8 @@ const Colors = {
   green600: "#889E81",
   green400: "#BAC7A7",
   green200: "#E5E4CC",
+  error50: '#fcc4e4',
+  error500: '#e50000',
 };
 
 export default Colors;

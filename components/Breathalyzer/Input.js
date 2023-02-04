@@ -2,16 +2,17 @@ import { Text, TextInput, View, StyleSheet } from "react-native";
 import Colors from "../../constants/colors";
 import { CheckBox } from "react-native-elements";
 
-function Input({ label, textInputConfig, suffix }) {
+function Input({ label, invalid, textInputConfig, suffix }) {
   return (
     <View style={styles.compContainer}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, invalid && styles.invalidLabel]}>
+        {label}
+      </Text>
       <View style={styles.input}>
         <TextInput
           {...textInputConfig}
           style={styles.textInput}
           underlineColorAndroid="transparent"
-          // onChangeText={(mobile_number) => this.setState({ mobile_number })}
         />
         <Text style={styles.suffix}>{suffix}</Text>
       </View>
@@ -21,6 +22,7 @@ function Input({ label, textInputConfig, suffix }) {
 
 function MultipleInput({
   label,
+  invalid,
   textInputConfig1,
   textInputConfig2,
   suffix1,
@@ -28,14 +30,15 @@ function MultipleInput({
 }) {
   return (
     <View style={styles.compContainer}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, invalid && styles.invalidLabel]}>
+        {label}
+      </Text>
       <View style={styles.multipleInput}>
         <View style={[styles.input, { marginRight: 6 }]}>
           <TextInput
             {...textInputConfig1}
             style={styles.textInput}
             underlineColorAndroid="transparent"
-            // onChangeText={(mobile_number) => this.setState({ mobile_number })}
           />
           <Text style={styles.suffix}>{suffix1}</Text>
         </View>
@@ -44,7 +47,6 @@ function MultipleInput({
             {...textInputConfig2}
             style={styles.textInput}
             underlineColorAndroid="transparent"
-            // onChangeText={(mobile_number) => this.setState({ mobile_number })}
           />
           <Text style={styles.suffix}>{suffix2}</Text>
         </View>
@@ -54,6 +56,7 @@ function MultipleInput({
 }
 function RadioButton({
   label,
+  invalid,
   title1,
   title2,
   checked1,
@@ -63,7 +66,9 @@ function RadioButton({
 }) {
   return (
     <View style={styles.compContainer}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, invalid && styles.invalidLabel]}>
+        {label}
+      </Text>
       <View style={styles.radioButtonContainer}>
         <CheckBox
           title={
@@ -108,7 +113,7 @@ export { Input, MultipleInput, RadioButton };
 
 const styles = StyleSheet.create({
   compContainer: {
-    marginVertical: 12,
+    marginVertical: 10,
   },
   label: {
     color: Colors.green200,
@@ -122,23 +127,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: Colors.green400,
-    borderRadius: 12,
+    borderRadius: 18,
     height: 40,
   },
   multipleInput: {
     flexDirection: "row",
     justifyContent: "space-between",
-
-    // borderWidth: 1,
-    // alignItems: "center",
-    // backgroundColor: Colors.green400,
-    // borderRadius: 10,
   },
   textInput: {
     flex: 1,
     backgroundColor: Colors.green400,
-    // color:
-    padding: 6,
+    paddingLeft: 14,
     borderRadius: 18,
     fontSize: 18,
   },
@@ -152,5 +151,11 @@ const styles = StyleSheet.create({
   },
   titleCheckbox: {
     marginLeft: 18,
+  },
+  invalidLabel: {
+    color: Colors.error500,
+  },
+  invalidInput: {
+    color: Colors.error50,
   },
 });
