@@ -3,6 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../util/types";
 import PrimaryButton from "../components/PrimaryButton";
 import Colors from "../constants/colors";
+import React from "react";
 
 type WelcomeScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -27,7 +28,7 @@ function WelcomeScreen({ navigation }: WelcomeScreenProps) {
         </View>
         <View style={styles.emptyContainer}></View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={pressHandler}>Continue</PrimaryButton>
+          <PrimaryButton onPress={pressHandler} width='100%'>Continue</PrimaryButton>
         </View>
       </View>
     </ImageBackground>
