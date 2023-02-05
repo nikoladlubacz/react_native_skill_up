@@ -1,3 +1,4 @@
+import React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import Colors from "../constants/colors";
 import Menu from "../models/menu";

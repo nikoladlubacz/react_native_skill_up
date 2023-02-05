@@ -2,36 +2,42 @@ import {
   View,
   StyleSheet,
   FlatList,
-  ListRenderItemInfo,
-  Text,
   ActivityIndicator,
 } from "react-native";
 import DrinkGridTile from "../components/DrinkGridTile";
 import MenuItem from "../components/MenuItem";
 import { MenuLabels, Drinks } from "../data/data";
-import Drink from "../models/drink";
-import Menu from "../models/menu";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../util/types";
 import { useEffect, useState } from "react";
 import React from "react";
 
-type DrinksScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  "DrinksScreen"
->;
+// type DrinksScreenProps = NativeStackScreenProps<
+//   RootStackParamList,
+//   "DrinksScreen"
+// >;
 
-function DrinksScreen({ navigation }: DrinksScreenProps) {
+function DrinksScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   const getDrinks = async () => {
     try {
       const response = await fetch(
-        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
+        "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka"
       );
       const json = await response.json();
-      setData(json.drinks);
+      const { drinks } = json;
+      const newDrinks = drinks.map((element) => {
+        const { idDrink, strDrink, strDrinkThumb } = element;
+
+        return {
+          id: idDrink,
+          name: strDrink,
+          image: strDrinkThumb,
+        };
+      });
+
+      setDrinks(newDrinks);
     } catch (error) {
       console.error(error);
     } finally {
@@ -43,7 +49,7 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
     getDrinks();
   }, []);
 
-  function renderDrinkItem(id: number, name: string, image: string) {
+  function renderDrinkItem(id, name, image) {
     function pressHandler() {
       navigation.navigate("DrinkDetailScreen", {
         drinkId: id,
@@ -61,7 +67,7 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
         <FlatList
           horizontal={true}
           data={MenuLabels}
-          renderItem={({ item }: ListRenderItemInfo<Menu>) => (
+          renderItem={({ item }) => (
             <MenuItem name={item.name} image={item.image} id={item.id} />
           )}
         />
@@ -71,10 +77,10 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
           <ActivityIndicator size="large" style={styles.indicator} />
         ) : (
           <FlatList
-            data={data}
+            data={drinks}
             numColumns={2}
-            renderItem={({ item }: ListRenderItemInfo<Drink>) =>
-              renderDrinkItem(item.idDrink, item.strDrink, item.strDrinkThumb)
+            renderItem={({ item }) =>
+              renderDrinkItem(item.id, item.name, item.image)
             }
           />
         )}
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   drinksContainer: {
-    marginBottom: 0,
+    marginBottom: 100,
   },
   indicator: {
     marginTop: 200,
