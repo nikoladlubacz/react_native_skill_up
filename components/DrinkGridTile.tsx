@@ -1,3 +1,4 @@
+import React from "react";
 import { View, Pressable, Text, StyleSheet, Image } from "react-native";
 import Colors from "../constants/colors";
 
@@ -11,12 +12,6 @@ type Props = {
 function DrinkGridTile({ name, image, onPress }: Props) {
   return (
     <View style={styles.gridItem}>
-      {/* <ImageBackground
-        source={{ uri: image }}
-        resizeMode="cover"
-        style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
-      > */}
       <Pressable
         android_ripple={{ color: Colors.green800 }}
         style={({ pressed }) => [
@@ -34,7 +29,6 @@ function DrinkGridTile({ name, image, onPress }: Props) {
           </View>
         </View>
       </Pressable>
-      {/* </ImageBackground> */}
     </View>
   );
 }

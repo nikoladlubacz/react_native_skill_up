@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Colors from "../constants/colors";
 import DrinksScreen from "../screens/DrinksScreen";
-import { BottomTabParamList } from "../util/types";
 import { Ionicons } from "@expo/vector-icons";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import BreathalyzerScreen from "../screens/BreathalyzerScreen";
+import React from "react";
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const BottomTab = createBottomTabNavigator();
 
 function BottomTabsNavigator() {
   return (
@@ -43,13 +43,15 @@ function BottomTabsNavigator() {
         name="Breathalyzer"
         component={BreathalyzerScreen}
         options={{
+          title: "How Drunk Are You ?",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="help-outline" color={color} size={size} />
           ),
+          tabBarLabel:"Breathalyzer"
         }}
       />
     </BottomTab.Navigator>
   );
 }
 
-export default BottomTabsNavigator
+export default BottomTabsNavigator;

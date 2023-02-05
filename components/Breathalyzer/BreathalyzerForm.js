@@ -12,8 +12,6 @@ function BreathalyzerForm({ onSubmitBtn }) {
   const [inputValue, setInputValue] = useState({
     name: { value: "", isValid: true },
     gender: { value: "", isValid: true },
-    // male: { value: "", isValid: false },
-    // female: { value: "", isValid: false },
     weight: { value: "", isValid: true },
     amountOfAlkohol: { value: "", isValid: true },
     strengthOfAlkohol: { value: "", isValid: true },
@@ -49,8 +47,6 @@ function BreathalyzerForm({ onSubmitBtn }) {
     const formData = {
       name: inputValue.name.value,
       gender: inputValue.gender.value,
-      // male: inputValue.male.value,
-      // female: inputValue.female.value,
       weight: inputValue.weight.value,
       amountOfAlkohol: inputValue.amountOfAlkohol.value,
       strengthOfAlkohol: inputValue.strengthOfAlkohol.value,
@@ -66,7 +62,9 @@ function BreathalyzerForm({ onSubmitBtn }) {
     const amountOfAkoholoIsValid =
       !isNaN(formData.amountOfAlkohol) && formData.amountOfAlkohol > 0;
     const strenghtOfAkoholoIsValid =
-      !isNaN(formData.strengthOfAlkohol) && formData.strengthOfAlkohol > 0;
+      !isNaN(formData.strengthOfAlkohol) &&
+      formData.strengthOfAlkohol > 0 &&
+      formData.strengthOfAlkohol <= 100;
     const dateIsValid = formData.date.toString() !== "Invalid Date";
     const timeIsValid = regTime.test(formData.time) === true;
     const emailIsValid = regEmail.test(formData.email) === true;
@@ -84,11 +82,6 @@ function BreathalyzerForm({ onSubmitBtn }) {
       setInputValue((curInputValues) => {
         return {
           name: { value: curInputValues.name.value, isValid: nameIsValid },
-          // male: { value: curInputValues.male.value, isValid: genderIsValid },
-          // female: {
-          //   value: curInputValues.female.value,
-          //   isValid: genderIsValid,
-          // },
           gender: { value: "", isValid: genderIsValid },
           weight: {
             value: curInputValues.weight.value,
@@ -115,8 +108,6 @@ function BreathalyzerForm({ onSubmitBtn }) {
   const formIsValid =
     !inputValue.name.isValid ||
     !inputValue.gender.isValid ||
-    // !inputValue.male.isValid ||
-    // !inputValue.female.isValid ||
     !inputValue.weight.isValid ||
     !inputValue.amountOfAlkohol.isValid ||
     !inputValue.strengthOfAlkohol.isValid ||
@@ -181,11 +172,13 @@ function BreathalyzerForm({ onSubmitBtn }) {
         invalid={!inputValue.date.isValid || !inputValue.time.isValid}
         textInputConfig1={{
           placeholder: "HH:MM",
+          keyboardType: "number-pad",
           onChangeText: inputChangedHandle.bind(this, "time"),
           value: inputValue.time.value,
         }}
         textInputConfig2={{
           placeholder: "YYYY-MM-DD",
+          keyboardType: "number-pad",
           onChangeText: inputChangedHandle.bind(this, "date"),
           value: inputValue.date.value,
         }}
@@ -216,9 +209,7 @@ function BreathalyzerForm({ onSubmitBtn }) {
 export default BreathalyzerForm;
 
 const styles = StyleSheet.create({
-  container: {
-    // marginVertical: 12,
-  },
+  container: {},
   button: {
     alignItems: "center",
     marginTop: 16,
@@ -229,7 +220,6 @@ const styles = StyleSheet.create({
   label: {
     color: Colors.green200,
     fontSize: 12,
-    // color:
     margimBottom: 4,
   },
   errorText: {

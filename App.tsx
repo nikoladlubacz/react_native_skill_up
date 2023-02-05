@@ -44,7 +44,6 @@ export default function App() {
               options={{
                 title: "Drinks",
                 headerShown: false,
-
                 contentStyle: { backgroundColor: Colors.green600 },
               }}
             />

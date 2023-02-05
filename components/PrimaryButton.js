@@ -3,7 +3,7 @@ import Colors from "../constants/colors";
 
 function PrimaryButton({ children, onPress, width }) {
   return (
-    <View style={[styles.buttonOuterContainer, {width:width}]}>
+    <View style={[styles.buttonOuterContainer, { width: width }]}>
       <Pressable
         style={({ pressed }) =>
           pressed
@@ -25,9 +25,8 @@ const styles = StyleSheet.create({
   buttonOuterContainer: {
     borderRadius: 18,
     overflow: "hidden",
-    borderWidth:1,
-    borderColor:Colors.grey800,
-    // width:'100%'
+    borderWidth: 1,
+    borderColor: Colors.grey800,
   },
   buttonInnerContainer: {
     backgroundColor: "#757575",
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: Colors.green200,
-    fontSize:18,
+    fontSize: 18,
     textAlign: "center",
     textTransform: "uppercase",
   },

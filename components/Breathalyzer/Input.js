@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
   label: {
     color: Colors.green200,
     fontSize: 14,
-    // color:
     paddingBottom: 6,
   },
   input: {

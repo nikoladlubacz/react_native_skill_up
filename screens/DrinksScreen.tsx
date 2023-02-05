@@ -14,6 +14,7 @@ import Menu from "../models/menu";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../util/types";
 import { useEffect, useState } from "react";
+import React from "react";
 
 type DrinksScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -30,7 +31,6 @@ function DrinksScreen({ navigation }: DrinksScreenProps) {
         "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
       );
       const json = await response.json();
-      // console.log(json);
       setData(json.drinks);
     } catch (error) {
       console.error(error);

@@ -1,3 +1,4 @@
+import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import Colors from "../constants/colors";
 
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   },
   detailContainer: {
     flexDirection: "row",
-    margin:4
+    margin: 4,
   },
   ingredient: {
     flex: 1,
@@ -77,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 2,
     fontSize: 18,
     margin: 2,
-    // textAlign: "center",
     color: Colors.grey800,
   },
 });
