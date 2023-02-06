@@ -28,7 +28,7 @@ function WelcomeScreen({ navigation }: WelcomeScreenProps) {
         </View>
         <View style={styles.emptyContainer}></View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={pressHandler} width='100%'>Continue</PrimaryButton>
+          <PrimaryButton onPress={pressHandler} width='100%' color='#e50000'>Continue</PrimaryButton>
         </View>
       </View>
     </ImageBackground>

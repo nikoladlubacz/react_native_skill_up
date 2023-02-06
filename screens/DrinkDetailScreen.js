@@ -1,5 +1,5 @@
 import { useLayoutEffect, useContext } from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Text, StyleSheet } from "react-native";
 import { RootStackParamList } from "../util/types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Drinks } from "../data/data";
@@ -10,6 +10,7 @@ import Colors from "../constants/colors";
 import { useEffect, useState } from "react";
 import { FavoritesContext } from "../store/favoritesContext";
 import Drink from "../models/drink";
+import { Dimensions } from "react-native";
 
 // type DrinkDetailProps = NativeStackScreenProps<
 //   RootStackParamList,
@@ -72,29 +73,6 @@ function DrinkDetailScreen({ route, navigation }) {
         strMeasure15,
       } = json.drinks[0];
 
-      console.log("??????????");
-      console.log(json.drinks[0]);
-
-      // const ingredients = [
-      //   strIngredient1,
-      //   strIngredient2,
-      //   strIngredient3,
-      //   strIngredient4,
-      //   strIngredient5,
-      //   strIngredient6,
-      //   strIngredient7,
-      //   strIngredient8,
-      //   strIngredient9,
-      //   strIngredient10,
-      //   strIngredient11,
-      //   strIngredient12,
-      //   strIngredient13,
-      //   strIngredient14,
-      //   strIngredient15,
-      // ].filter((element) => {
-      //   return element != null;
-      // });
-
       const ingredients = [
         (strMeasure1 ?? "") + " " + strIngredient1,
         (strMeasure2 ?? "") + " " + strIngredient2,
@@ -114,29 +92,6 @@ function DrinkDetailScreen({ route, navigation }) {
       ].filter((element) => {
         return element != " null";
       });
-      console.log(ingredients);
-
-      // const measures = [
-      //   strMeasure1,
-      //   strMeasure2,
-      //   strMeasure3,
-      //   strMeasure4,
-      //   strMeasure5,
-      //   strMeasure6,
-      //   strMeasure7,
-      //   strMeasure8,
-      //   strMeasure9,
-      //   strMeasure10,
-      //   strMeasure11,
-      //   strMeasure12,
-      //   strMeasure13,
-      //   strMeasure14,
-      //   strMeasure15,
-      // ]
-      //   .slice(0, ingredients.length)
-      //   .map((element) => {
-      //     return element;
-      //   });
 
       const newDrink = new Drink(
         name,
@@ -169,9 +124,18 @@ function DrinkDetailScreen({ route, navigation }) {
     }
   }
 
+  const CustomHeader = ({ title }) => (
+    <View style={styles.headerContainer}>
+      <Text style={styles.headerTitle}>{title}</Text>
+    </View>
+  );
+
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: drinkName,
+      headerTitle: () => {
+        return <CustomHeader title={drinkName} />;
+      },
+      headerTitleAlign: "center",
       headerRight: () => {
         return (
           <IconButton
@@ -199,3 +163,16 @@ function DrinkDetailScreen({ route, navigation }) {
 }
 
 export default DrinkDetailScreen;
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    flex: 1,
+  },
+  headerTitle: {
+    width: 260,
+    marginVertical: 12,
+    fontSize: 24,
+    textAlign: "center",
+    color: Colors.green200,
+  },
+});

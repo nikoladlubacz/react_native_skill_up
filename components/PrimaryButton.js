@@ -1,13 +1,17 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import Colors from "../constants/colors";
 
-function PrimaryButton({ children, onPress, width }) {
+function PrimaryButton({ children, onPress, width, color }) {
   return (
     <View style={[styles.buttonOuterContainer, { width: width }]}>
       <Pressable
         style={({ pressed }) =>
           pressed
-            ? [styles.buttonInnerContainer, styles.pressed]
+            ? [
+                { backgroundColor: pressed ? "black" : "white" },
+                styles.buttonInnerContainer,
+                styles.pressed,
+              ]
             : styles.buttonInnerContainer
         }
         onPress={onPress}
