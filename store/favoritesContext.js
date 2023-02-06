@@ -1,29 +1,46 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 
+// const DUMMY_EXPENSES = [
+//   {
+//     drinkId: "e1",
+//     nameDrink: "A pair of shoes",
+//     image: "59.99",
+//   },
+// ];
 
 export const FavoritesContext = createContext({
-  ids: [],
-  addFavorite: (id) => {},
-  removeFavorite: (id) => {},
+  drinkList: [],
+  addFavorite: ({ drinkId, nameDrink, image }) => {},
+  deleteFavorite: (id) => {},
 });
 
+function drinksReducer(state, action) {
+  switch (action.type) {
+    case "ADD":
+      // const id = new Date().toString() + Math.random().toString();
+      return [{ ...action.payload }, ...state];
+    case "DELETE":
+      return state.filter((drink) => drink.drinkId !== action.payload);
+    default:
+      return state;
+  }
+}
+
 function FavoritesContextProvider({ children }) {
-  const [favoriteDrinkIds, setFavoriteDrinkIds] = useState([]);
+  const [drinksState, dispatch] = useReducer(drinksReducer, []);
 
-  function addFavorite(id) {
-    setFavoriteDrinkIds((currentFavIds) => [...currentFavIds, id]);
+  function addFavoriteDrink(drinkData) {
+    dispatch({ type: "ADD", payload: drinkData });
   }
 
-  function removeFavorite(id) {
-    setFavoriteDrinkIds((currentFavIds) =>
-      currentFavIds.filter((drinkId) => drinkId !== id)
-    );
+  function deleteFavoriteDrink(id) {
+    dispatch({ type: "DELETE", payload: id });
   }
 
-  const value= {
-    ids: favoriteDrinkIds,
-    addFavorite: addFavorite,
-    removeFavorite: removeFavorite,
+  const value = {
+    drinkList: drinksState,
+    addFavorite: addFavoriteDrink,
+    deleteFavorite: deleteFavoriteDrink,
   };
 
   return (

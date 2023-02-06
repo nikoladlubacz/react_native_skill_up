@@ -1,4 +1,5 @@
 class Drink {
+  id: string;
   name: string;
   image: string;
   category: string;
@@ -8,6 +9,7 @@ class Drink {
   ingredients: string[];
 
   constructor(
+    id: string,
     name: string,
     image: string,
     category: string,
@@ -16,6 +18,7 @@ class Drink {
     instructions: string,
     ingredients: string[]
   ) {
+    this.id = id;
     this.name = name;
     this.image = image;
     this.category = category;

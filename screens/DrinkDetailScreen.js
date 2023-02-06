@@ -1,16 +1,11 @@
 import { useLayoutEffect, useContext } from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
-import { RootStackParamList } from "../util/types";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Drinks } from "../data/data";
 import DrinkItem from "../components/DrinkItem";
-// import Drink from "../models/drink";
 import IconButton from "../components/IconButton";
 import Colors from "../constants/colors";
 import { useEffect, useState } from "react";
 import { FavoritesContext } from "../store/favoritesContext";
 import Drink from "../models/drink";
-import { Dimensions } from "react-native";
 
 // type DrinkDetailProps = NativeStackScreenProps<
 //   RootStackParamList,
@@ -19,7 +14,7 @@ import { Dimensions } from "react-native";
 
 function DrinkDetailScreen({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
-  const [drinks, setDrink] = useState([]);
+  const [data, setData] = useState([]);
 
   const favoriteDrinksCtx = useContext(FavoritesContext);
   const drinkId = route.params.drinkId;
@@ -29,12 +24,31 @@ function DrinkDetailScreen({ route, navigation }) {
   let url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
   url += drinkId;
 
+  // const drinkIsFavorite = favoriteDrinksCtx.drinkList.includes(data.id);
+  // const drinkIsFavorite = favoriteDrinksCtx.drinkList.filter(drink => drink.drinkId === drinkId)
+  const drinkIsFavorite = favoriteDrinksCtx.drinkList.some(
+    (item) => item.drinkId === drinkId
+  );
+
+  function changeFavoriteStatusHandler() {
+    if (drinkIsFavorite) {
+      favoriteDrinksCtx.deleteFavorite(drinkId);
+    } else {
+      favoriteDrinksCtx.addFavorite({
+        drinkId: drinkId,
+        nameDrink: drinkName,
+        image: data[0].image,
+      });
+    }
+  }
+
   const getDrink = async () => {
     try {
       const response = await fetch(url);
       const json = await response.json();
 
       const {
+        idDrink: id,
         strDrink: name,
         strDrinkThumb: image,
         strCategory: category,
@@ -94,6 +108,7 @@ function DrinkDetailScreen({ route, navigation }) {
       });
 
       const newDrink = new Drink(
+        id,
         name,
         image,
         category,
@@ -103,7 +118,7 @@ function DrinkDetailScreen({ route, navigation }) {
         ingredients
       );
 
-      drinks.push(newDrink);
+      data.push(newDrink);
     } catch (error) {
       console.error(error);
     } finally {
@@ -113,16 +128,6 @@ function DrinkDetailScreen({ route, navigation }) {
   useEffect(() => {
     getDrink();
   }, []);
-
-  const drinkIsFavorite = favoriteDrinksCtx.ids.includes(drinkId);
-
-  function changeFavoriteStatusHandler() {
-    if (drinkIsFavorite) {
-      favoriteDrinksCtx.removeFavorite(drinkId);
-    } else {
-      favoriteDrinksCtx.addFavorite(drinkId);
-    }
-  }
 
   const CustomHeader = ({ title }) => (
     <View style={styles.headerContainer}>
@@ -155,7 +160,7 @@ function DrinkDetailScreen({ route, navigation }) {
   return (
     <View>
       <FlatList
-        data={drinks}
+        data={data}
         renderItem={({ item }) => renderDrinkDetailItem(item)}
       />
     </View>
