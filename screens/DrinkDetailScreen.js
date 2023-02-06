@@ -21,8 +21,7 @@ function DrinkDetailScreen({ route, navigation }) {
   const drinkName = route.params.drinkName;
 
   // const selectedDrink = Drinks.find((drinkItem) => drinkItem.id === drinkId);
-  let url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
-  url += drinkId;
+  
 
   // const drinkIsFavorite = favoriteDrinksCtx.drinkList.includes(data.id);
   // const drinkIsFavorite = favoriteDrinksCtx.drinkList.filter(drink => drink.drinkId === drinkId)
@@ -42,9 +41,14 @@ function DrinkDetailScreen({ route, navigation }) {
     }
   }
 
+  // let url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
+  // url += drinkId;
+
   const getDrink = async () => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(
+        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`
+      );
       const json = await response.json();
 
       const {

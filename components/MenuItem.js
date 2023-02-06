@@ -1,15 +1,18 @@
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text, Pressable } from "react-native";
 import Colors from "../constants/colors";
-import Menu from "../models/menu";
-
-function MenuItem({ name, image }: Menu) {
+//
+function MenuItem({ name, image, onPress }) {
   return (
-    <View style={styles.screen}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={image} />
+    <View>
+      <View style={styles.screen}>
+        <Pressable onPress={onPress}>
+          <View style={styles.imageContainer}>
+            <Image style={styles.image} source={image} />
+          </View>
+        </Pressable>
+        <Text>{name}</Text>
       </View>
-      <Text>{name}</Text>
     </View>
   );
 }

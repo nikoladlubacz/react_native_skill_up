@@ -9,53 +9,54 @@ import Colors from "./constants/colors";
 import React from "react";
 import FavoritesContextProvider from "./store/favoritesContext";
 import BottomTabsNavigator from "./components/BottomTabs";
+import AlkoholContextProvider from "./store/alkoholContext";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-
-
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <FavoritesContextProvider>
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="WelcomeScreen"
-            screenOptions={{
-              headerStyle: { backgroundColor: Colors.grey800 },
-              headerTintColor: Colors.green200,
-              headerTitleAlign: "center",
-              headerTitleStyle: {
-                fontSize: 30,
-              },
-            }}
-          >
-            <Stack.Screen
-              name="WelcomeScreen"
-              component={WelcomeScreen}
-              options={{
-                headerShown: false,
+        <AlkoholContextProvider>
+          <NavigationContainer>
+            <Stack.Navigator
+              initialRouteName="WelcomeScreen"
+              screenOptions={{
+                headerStyle: { backgroundColor: Colors.grey800 },
+                headerTintColor: Colors.green200,
+                headerTitleAlign: "center",
+                headerTitleStyle: {
+                  fontSize: 30,
+                },
               }}
-            />
-            <Stack.Screen
-              name="DrinksScreen"
-              component={BottomTabsNavigator}
-              options={{
-                title: "Drinks",
-                headerShown: false,
-                contentStyle: { backgroundColor: Colors.green600 },
-              }}
-            />
-            <Stack.Screen
-              name="DrinkDetailScreen"
-              component={DrinkDetailScreen}
-              options={{
-                contentStyle: { backgroundColor: Colors.green600 },
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+            >
+              <Stack.Screen
+                name="WelcomeScreen"
+                component={WelcomeScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="DrinksScreen"
+                component={BottomTabsNavigator}
+                options={{
+                  title: "Drinks",
+                  headerShown: false,
+                  contentStyle: { backgroundColor: Colors.green600 },
+                }}
+              />
+              <Stack.Screen
+                name="DrinkDetailScreen"
+                component={DrinkDetailScreen}
+                options={{
+                  contentStyle: { backgroundColor: Colors.green600 },
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </AlkoholContextProvider>
       </FavoritesContextProvider>
     </View>
   );
