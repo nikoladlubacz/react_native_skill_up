@@ -17,19 +17,15 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   const [dbInitialized, setDbInitialized] = useState(false);
+
   useEffect(() => {
-    async function prepare() {
-      try {
-        init();
-        await SplashScreen.preventAutoHideAsync();
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-      } catch (e) {
-        console.warn(e);
-      } finally {
+    init()
+      .then(() => {
         setDbInitialized(true);
-      }
-    }
-    prepare();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const onLayoutRootView = useCallback(async () => {
@@ -37,10 +33,6 @@ export default function App() {
       await SplashScreen.hideAsync();
     }
   }, [dbInitialized]);
-
-  if (!dbInitialized) {
-    return null;
-  }
 
   return (
     <>

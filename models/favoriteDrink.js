@@ -1,8 +1,8 @@
 export class FavoriteDrink {
-  constructor(drinkId, nameDrink, image) {
-    this.drinkId = drinkId;
+  constructor(nameDrink, image, drinkNumber) {
     this.nameDrink = nameDrink;
     this.image = image;
+    this.drinkNumber = drinkNumber;
     // this.id = new Date().toString + Math.random().toString();
   }
 }

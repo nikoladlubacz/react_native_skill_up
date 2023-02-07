@@ -44,17 +44,27 @@ function DrinkDetailScreen({ route, navigation }) {
   //   }
   // }
 
-  function favoriteDrinkHandler() {
-    if (drinkIsFavorite) {
-      favoriteDrinksCtx.deleteFavorite(drinkId);
-    } else {
-      favoriteDrinksCtx.addFavorite({
-        drinkId: drinkId,
-        nameDrink: drinkName,
-        image: data[0].image,
-      });
+  async function favoriteDrinkHandler() {
+    console.log("favoriteHandler");
+    console.log(data);
+    const favoriteDrink = new FavoriteDrink(
+      data[0].nameDrink,
+      data[0].image,
+      data[0].drinkId
+    );
+    console.log(favoriteDrink);
+    await insertFavoriteDrink(favoriteDrink);
+
+    // if (drinkIsFavorite) {
+    //   favoriteDrinksCtx.deleteFavorite(drinkId);
+    // } else {
+    //   favoriteDrinksCtx.addFavorite({
+    //     drinkId: drinkId,
+    //     nameDrink: drinkName,
+    //     image: data[0].image,
+    //   });
+    // }
     }
-  }
 
   useEffect(() => {
     async function getDrink() {

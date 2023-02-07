@@ -1,7 +1,7 @@
 import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
 import DrinkGridTile from "../components/DrinkGridTile";
 import MenuItem from "../components/MenuItem";
-import { MenuLabels, Drinks } from "../data/data";
+import { MenuLabels } from "../data/data";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { AlkoholContext } from "../store/alkoholContext";
@@ -9,7 +9,6 @@ import { fetchDrinks } from "../util/http";
 
 function DrinksScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
   const alkoholCtx = useContext(AlkoholContext);
