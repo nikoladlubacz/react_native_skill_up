@@ -1,6 +1,6 @@
 class Drink {
-  id: string;
-  name: string;
+  drinkId: string;
+  nameDrink: string;
   image: string;
   category: string;
   alcoholic: string;
@@ -10,7 +10,7 @@ class Drink {
 
   constructor(
     id: string,
-    name: string,
+    nameDrink: string,
     image: string,
     category: string,
     alcoholic: string,
@@ -18,8 +18,8 @@ class Drink {
     instructions: string,
     ingredients: string[]
   ) {
-    this.id = id;
-    this.name = name;
+    this.drinkId = id;
+    this.nameDrink = nameDrink;
     this.image = image;
     this.category = category;
     this.alcoholic = alcoholic;

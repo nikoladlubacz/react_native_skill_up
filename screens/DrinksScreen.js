@@ -5,50 +5,28 @@ import { MenuLabels, Drinks } from "../data/data";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { AlkoholContext } from "../store/alkoholContext";
-
-// type DrinksScreenProps = NativeStackScreenProps<
-//   RootStackParamList,
-//   "DrinksScreen"
-// >;
+import { fetchDrinks } from "../util/http";
 
 function DrinksScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [drinks, setDrinks] = useState([]);
-  // const [alkohol, setAlkohol] = useState("Vodka");
 
   const alkoholCtx = useContext(AlkoholContext);
   const alkohol = alkoholCtx.alkoholName;
 
-  const getDrinks = async () => {
-    console.log("??????????");
-    console.log(alkoholCtx.alkoholName);
-
-    try {
-      const response = await fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${alkohol}`
-      );
-      const json = await response.json();
-      const { drinks } = json;
-      const newDrinks = drinks.map((element) => {
-        const { idDrink, strDrink, strDrinkThumb } = element;
-
-        return {
-          id: idDrink,
-          name: strDrink,
-          image: strDrinkThumb,
-        };
-      });
-
-      setDrinks(newDrinks);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    async function getDrinks() {
+      setLoading(false);
+      try {
+        const fetchedDrinks = await fetchDrinks(alkohol);
+        setDrinks(fetchedDrinks);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
     getDrinks();
   }, [alkohol]);
 
@@ -87,7 +65,7 @@ function DrinksScreen({ navigation }) {
           <ActivityIndicator size="large" style={styles.indicator} />
         ) : (
           <FlatList
-            data={drinks}
+            data={drinks[0]}
             numColumns={2}
             renderItem={({ item }) =>
               renderDrinkItem(item.id, item.name, item.image)

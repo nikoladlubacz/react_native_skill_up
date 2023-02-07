@@ -3,12 +3,15 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import { FavoritesContext } from "../store/favoritesContext";
 import { Drinks } from "../data/data";
 import DrinkGridTile from "../components/DrinkGridTile";
+import { fetchFavoriteDrinks } from "../util/database";
 
 function FavoritesScreen({ navigation }) {
   const favoriteDrinksCtx = useContext(FavoritesContext);
   // const favoriteDrinks = Drinks.filter((drink) =>
   //   favoriteDrinksCtx.ids.includes(drink.id)
   // );
+
+  const favoriteDrinks = fetchFavoriteDrinks();
 
   function renderDrinkItem(id, name, image) {
     function pressHandler() {
