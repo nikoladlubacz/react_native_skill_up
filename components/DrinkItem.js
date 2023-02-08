@@ -1,22 +1,21 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import Colors from "../constants/colors";
-import Drink from "../models/drink";
-import PrimaryButton from "./PrimaryButton";
+import DetailButton from "./DetailButton";
 import { useState } from "react";
 
 function DrinkItem(drink) {
-  const [ingredients, setIngredients] = useState(true);
-  const [steps, setSteps] = useState(false);
+  const [ingredientsVisibility, setIngredientsVisibility] = useState(true);
+  const [stepsVisibility, setStepsVisibility] = useState();
 
   const pressedIngrediens = () => {
-    setIngredients(true);
-    setSteps(false);
+    setIngredientsVisibility(true);
+    setStepsVisibility(false);
   };
 
   const pressedSteps = () => {
-    setIngredients(false);
-    setSteps(true);
+    setIngredientsVisibility(false);
+    setStepsVisibility(true);
   };
 
   function renderItem(ingredient) {
@@ -27,25 +26,27 @@ function DrinkItem(drink) {
     );
   }
 
-  function checkHandler() {}
-
   return (
     <View>
       <Image style={styles.image} source={{ uri: drink.drink.image }} />
       <View style={styles.detailContainer}>
         <View style={styles.buttons}>
-          <PrimaryButton
+          <DetailButton
             width="48%"
             onPress={pressedIngrediens}
-            color="Colors.green800"
+            isPressed={ingredientsVisibility}
           >
             Ingredients
-          </PrimaryButton>
-          <PrimaryButton width="48%" onPress={pressedSteps}>
+          </DetailButton>
+          <DetailButton
+            width="48%"
+            onPress={pressedSteps}
+            isPressed={stepsVisibility}
+          >
             Steps
-          </PrimaryButton>
+          </DetailButton>
         </View>
-        {ingredients && (
+        {ingredientsVisibility && (
           <View style={styles.ingredientsContainer}>
             <FlatList
               data={drink.drink.ingredients}
@@ -53,7 +54,7 @@ function DrinkItem(drink) {
             />
           </View>
         )}
-        {steps && (
+        {stepsVisibility && (
           <View style={styles.instructionContainer}>
             <Text style={styles.instruction}>{drink.drink.instructions}</Text>
           </View>
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 2,
     color: Colors.grey800,
-    marginVertical:4,
+    marginVertical: 4,
   },
   ingredientsContainer: {
     paddingLeft: 6,

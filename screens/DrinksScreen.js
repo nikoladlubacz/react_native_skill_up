@@ -43,8 +43,6 @@ function DrinksScreen({ navigation }) {
 
   function renderMenuItem(name, image) {
     function pressHandler() {
-      console.log("presed");
-      console.log(name);
       alkoholCtx.updateAlkoholName(name);
     }
     return <MenuItem name={name} image={image} onPress={pressHandler} />;
