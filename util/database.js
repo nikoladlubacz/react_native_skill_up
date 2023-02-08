@@ -22,8 +22,6 @@ export function init() {
 }
 
 export function insertFavoriteDrink(favoriteDrink) {
-  console.log("?????????");
-
   const promise = new Promise((resolve, reject) => {
     database.transaction((tx) => {
       tx.executeSql(
@@ -67,6 +65,45 @@ export function fetchFavoriteDrinks() {
       );
     });
   });
+  return promise;
+}
 
+export function fetchFavoriteDrinkById(id) {
+  const promise = new Promise((resolve, reject) => {
+    database.transaction((tx) => {
+      tx.executeSql(
+        `SELECT * FROM favoriteDrinks3 WHERE drinkNumber = ?`,
+        [id],
+        (_, result) => {
+          const favoriteDrinks = [];
+          for (const dp of result.rows._array) {
+            favoriteDrinks.push(
+              new FavoriteDrink(dp.nameDrink, dp.image, dp.drinkNumber)
+            );
+          }
+          resolve(favoriteDrinks);
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
+  return promise;
+}
+
+export function deleteFavoriteDrinkById(id) {
+  const promise = new Promise((resolve, reject) => {
+    database.transaction((tx) => {
+      tx.executeSql(
+        `DELETE FROM favoriteDrinks3 WHERE drinkNumber = ?`,
+        [id],
+        (_, result) => {},
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  });
   return promise;
 }

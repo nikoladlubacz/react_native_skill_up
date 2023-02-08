@@ -1,85 +1,63 @@
-import { useLayoutEffect, useContext } from "react";
+import { useLayoutEffect } from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
 import DrinkItem from "../components/DrinkItem";
 import IconButton from "../components/IconButton";
 import Colors from "../constants/colors";
 import { useEffect, useState } from "react";
-import { FavoritesContext } from "../store/favoritesContext";
 import { FavoriteDrink } from "../models/favoriteDrink";
-import { insertFavoriteDrink } from "../util/database";
+import { deleteFavoriteDrinkById, insertFavoriteDrink } from "../util/database";
 import { fetchDrinkDetails } from "../util/http";
+import { fetchFavoriteDrinkById } from "../util/database";
+import { useIsFocused } from "@react-navigation/native";
 
 function DrinkDetailScreen({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [drinkDetailsList, setDrinkDetailsList] = useState([]);
+  const [drinkIsFavorite, setDrinkIsFavorite] = useState();
 
-  const favoriteDrinksCtx = useContext(FavoritesContext);
   const drinkId = route.params.drinkId;
   const drinkName = route.params.drinkName;
 
-  const drinkIsFavorite = favoriteDrinksCtx.drinkList.some(
-    (item) => item.drinkId === drinkId
-  );
-
-  // async function favoriteDrinkHandler() {
-  //   console.log("!!!!!!!!!!!!!!!");
-  //   console.log(data[0].drinkId);
-  //   const favoriteDrink = new FavoriteDrink(
-  //     parseInt(data[0].drinkId),
-  //     data[0].nameDrink,
-  //     data[0].image
-  //   );
-  //   console.log(favoriteDrink);
-  //   await insertFavoriteDrink(favoriteDrink);
-
-  //   console.log(":::::::::::::::");
-  //   if (drinkIsFavorite) {
-  //     favoriteDrinksCtx.deleteFavorite(drinkId);
-  //   } else {
-  //     favoriteDrinksCtx.addFavorite({
-  //       drinkId: drinkId,
-  //       nameDrink: drinkName,
-  //       image: data[0].image,
-  //     });
-  //   }
-  // }
-
-  async function favoriteDrinkHandler() {
-    console.log("favoriteHandler");
-    console.log(data);
-    const favoriteDrink = new FavoriteDrink(
-      data[0].nameDrink,
-      data[0].image,
-      data[0].drinkId
-    );
-    console.log(favoriteDrink);
-    await insertFavoriteDrink(favoriteDrink);
-
-    // if (drinkIsFavorite) {
-    //   favoriteDrinksCtx.deleteFavorite(drinkId);
-    // } else {
-    //   favoriteDrinksCtx.addFavorite({
-    //     drinkId: drinkId,
-    //     nameDrink: drinkName,
-    //     image: data[0].image,
-    //   });
-    // }
-    }
+  const isFocused = useIsFocused();
 
   useEffect(() => {
+    async function loadFavoriteDrinkById() {
+      const favoriteDrink = await fetchFavoriteDrinkById(drinkId);
+      setDrinkIsFavorite(favoriteDrink.length > 0 ? true : false);
+    }
     async function getDrink() {
       setLoading(false);
       try {
         const fetchedDrink = await fetchDrinkDetails(drinkId);
-        setData(fetchedDrink);
+        setDrinkDetailsList(fetchedDrink);
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
     }
-    getDrink();
-  }, []);
+    if (isFocused) {
+      loadFavoriteDrinkById();
+      getDrink();
+    }
+  }, [isFocused, drinkIsFavorite]);
+
+  function favoriteDrinkHandler() {
+    if (drinkIsFavorite) {
+      deleteFavoriteDrinkById(drinkId);
+      setDrinkIsFavorite(false);
+      console.log("drink is delete");
+    } else {
+      const favoriteDrink = new FavoriteDrink(
+        drinkDetailsList[0].nameDrink,
+        drinkDetailsList[0].image,
+        drinkDetailsList[0].drinkId
+      );
+      insertFavoriteDrink(favoriteDrink);
+      setDrinkIsFavorite(true);
+      console.log("drink is favorite");
+    }
+  }
 
   const CustomHeader = ({ title }) => (
     <View style={styles.headerContainer}>
@@ -112,7 +90,7 @@ function DrinkDetailScreen({ route, navigation }) {
   return (
     <View>
       <FlatList
-        data={data}
+        data={drinkDetailsList}
         renderItem={({ item }) => renderDrinkDetailItem(item)}
       />
     </View>
