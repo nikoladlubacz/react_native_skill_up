@@ -8,6 +8,7 @@ export const MenuLabels = [
   new Menu(4, "Rum", require("../assets/images/rum.png")),
   new Menu(5, "Tequila", require("../assets/images/tequila.png")),
   new Menu(6, "Whiskey", require("../assets/images/whiskey.png")),
+  new Menu(7, "Wine", require("../assets/images/wine.png")),
 ];
 
 // export const Drinks = [

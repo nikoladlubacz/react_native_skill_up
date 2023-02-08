@@ -46,7 +46,6 @@ function DrinkDetailScreen({ route, navigation }) {
     if (drinkIsFavorite) {
       deleteFavoriteDrinkById(drinkId);
       setDrinkIsFavorite(false);
-      console.log("drink is delete");
     } else {
       const favoriteDrink = new FavoriteDrink(
         drinkDetailsList[0].nameDrink,
@@ -55,7 +54,6 @@ function DrinkDetailScreen({ route, navigation }) {
       );
       insertFavoriteDrink(favoriteDrink);
       setDrinkIsFavorite(true);
-      console.log("drink is favorite");
     }
   }
 
