@@ -29,24 +29,24 @@ function DrinksScreen({ navigation }) {
     getDrinks();
   }, [alkohol]);
 
-  function renderDrinkItem(id, name, image) {
-    function pressHandler() {
-      navigation.navigate("DrinkDetailScreen", {
-        drinkId: id,
-        drinkName: name,
-      });
-    }
-    return (
-      <DrinkGridTile id={id} name={name} image={image} onPress={pressHandler} />
-    );
-  }
+  // function renderDrinkItem(id, name, image) {
+  //   function pressHandler() {
+  //     navigation.navigate("DrinkDetailScreen", {
+  //       drinkId: id,
+  //       drinkName: name,
+  //     });
+  //   }
+  //   return (
+  //     <DrinkGridTile id={id} name={name} image={image} onPress={pressHandler} />
+  //   );
+  // }
 
-  function renderMenuItem(name, image) {
-    function pressHandler() {
-      alkoholCtx.updateAlkoholName(name);
-    }
-    return <MenuItem name={name} image={image} onPress={pressHandler} />;
-  }
+  // function renderMenuItem(name, image) {
+  //   function pressHandler() {
+  //     alkoholCtx.updateAlkoholName(name);
+  //   }
+  //   return <MenuItem name={name} image={image} onPress={pressHandler} />;
+  // }
 
   return (
     <View style={styles.appContainer}>
@@ -54,7 +54,14 @@ function DrinksScreen({ navigation }) {
         <FlatList
           horizontal={true}
           data={MenuLabels}
-          renderItem={({ item }) => renderMenuItem(item.name, item.image)}
+          renderItem={({ item }) => (
+            <MenuItem
+              name={item.name}
+              image={item.image}
+              onPress={() => alkoholCtx.updateAlkoholName(item.name)}
+            />
+          )}
+          // renderMenuItem(item.name, item.image)}
         />
       </View>
       <View style={styles.drinksContainer}>
@@ -64,8 +71,21 @@ function DrinksScreen({ navigation }) {
           <FlatList
             data={drinks[0]}
             numColumns={2}
-            renderItem={({ item }) =>
-              renderDrinkItem(item.id, item.name, item.image)
+            renderItem={
+              ({ item }) => (
+                <DrinkGridTile
+                  id={item.id}
+                  name={item.name}
+                  image={item.image}
+                  onPress={() =>
+                    navigation.navigate("DrinkDetailScreen", {
+                      drinkId: item.id,
+                      drinkName: item.name,
+                    })
+                  }
+                />
+              )
+              // renderDrinkItem(item.id, item.name, item.image)
             }
           />
         )}

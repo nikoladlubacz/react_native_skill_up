@@ -19,6 +19,7 @@ function DrinkGridTile({ name, image, onPress }: Props) {
           pressed ? styles.buttonPressed : null,
         ]}
         onPress={onPress}
+        onLongPress ={()=>{console.log("ddddddd");}}
       >
         <View style={styles.innerContainer}>
           <View style={styles.imageContainer}>
