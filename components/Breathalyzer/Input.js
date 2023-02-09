@@ -1,6 +1,5 @@
 import { Text, TextInput, View, StyleSheet } from "react-native";
 import Colors from "../../constants/colors";
-import { CheckBox } from "react-native-elements";
 
 function Input({ label, invalid, textInputConfig, suffix }) {
   return (
@@ -54,62 +53,8 @@ function MultipleInput({
     </View>
   );
 }
-function RadioButton({
-  label,
-  invalid,
-  title1,
-  title2,
-  checked1,
-  checked2,
-  onPress1,
-  onPress2,
-}) {
-  return (
-    <View style={styles.compContainer}>
-      <Text style={[styles.label, invalid && styles.invalidLabel]}>
-        {label}
-      </Text>
-      <View style={styles.radioButtonContainer}>
-        <CheckBox
-          title={
-            <Text style={[styles.label, styles.titleCheckbox]}>{title1}</Text>
-          }
-          center
-          checked={checked1}
-          checkedIcon="dot-circle-o"
-          uncheckedIcon="circle-o"
-          checkedColor={Colors.green200}
-          onPress={onPress1}
-          containerStyle={{
-            backgroundColor: "transparent",
-            borderColor: "transparent",
-            padding: 0,
-            margin: 0,
-          }}
-        />
-        <CheckBox
-          title={
-            <Text style={[styles.label, styles.titleCheckbox]}>{title2}</Text>
-          }
-          center
-          checked={checked2}
-          checkedIcon="dot-circle-o"
-          uncheckedIcon="circle-o"
-          checkedColor={Colors.green200}
-          onPress={onPress2}
-          containerStyle={{
-            backgroundColor: "transparent",
-            borderColor: "transparent",
-            padding: 0,
-            margin: 0,
-          }}
-        />
-      </View>
-    </View>
-  );
-}
 
-export { Input, MultipleInput, RadioButton };
+export { Input, MultipleInput };
 
 const styles = StyleSheet.create({
   compContainer: {
@@ -145,16 +90,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
   },
-  radioButtonContainer: {
-    flexDirection: "row",
-  },
   titleCheckbox: {
     marginLeft: 18,
   },
   invalidLabel: {
     color: Colors.error500,
-  },
-  invalidInput: {
-    color: Colors.error50,
   },
 });

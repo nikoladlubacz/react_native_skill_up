@@ -1,6 +1,6 @@
 import { View, StyleSheet, Alert, Text, ScrollView } from "react-native";
-import { Input, MultipleInput, RadioButton } from "./Input";
-
+import { Input, MultipleInput } from "./Input";
+import RadioButton from "./RadioButton";
 import { useState } from "react";
 import Colors from "../../constants/colors";
 import PrimaryButton from "../PrimaryButton";
@@ -43,7 +43,6 @@ function BreathalyzerForm({ onSubmitBtn }) {
     const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const regTime = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
 
-    console.log("TEST ! ! !");
     const formData = {
       name: inputValue.name.value,
       gender: inputValue.gender.value,
@@ -131,12 +130,10 @@ function BreathalyzerForm({ onSubmitBtn }) {
       <RadioButton
         label="Choose your gender:"
         invalid={!inputValue.gender.isValid}
-        title1="Male"
-        title2="Female"
-        checked1={male}
-        checked2={female}
-        onPress1={genderMale}
-        onPress2={genderFemale}
+        checkedMale={male}
+        checkedFemale={female}
+        onPressMale={genderMale}
+        onPressFemale={genderFemale}
       ></RadioButton>
       <Input
         label="Your weight:"
