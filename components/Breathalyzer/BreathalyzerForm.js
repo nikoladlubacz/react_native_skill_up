@@ -1,6 +1,7 @@
 import { View, StyleSheet, Alert, Text, ScrollView } from "react-native";
-import { Input, MultipleInput } from "./Input";
-import RadioButton from "./RadioButton";
+import { Input, MultipleInput} from "./Input";
+import RadioButton from "./RadioButton"
+
 import { useState } from "react";
 import Colors from "../../constants/colors";
 import PrimaryButton from "../PrimaryButton";
@@ -43,9 +44,10 @@ function BreathalyzerForm({ onSubmitBtn }) {
     const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const regTime = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
 
+    console.log("TEST ! ! !");
     const formData = {
       name: inputValue.name.value,
-      gender: inputValue.gender.value,
+      gender: male ? "male" : "female",
       weight: inputValue.weight.value,
       amountOfAlkohol: inputValue.amountOfAlkohol.value,
       strengthOfAlkohol: inputValue.strengthOfAlkohol.value,
@@ -59,11 +61,11 @@ function BreathalyzerForm({ onSubmitBtn }) {
       (male === false && female === true);
     const weightIsValid = !isNaN(formData.weight) && formData.weight > 0;
     const amountOfAkoholoIsValid =
-      !isNaN(formData.amountOfAlkohol) && formData.amountOfAlkohol > 0;
+      !isNaN(formData.amountOfAlkohol) && formData.amountOfAlkohol >= 0 && formData.amountOfAlkohol.trim();
     const strenghtOfAkoholoIsValid =
       !isNaN(formData.strengthOfAlkohol) &&
-      formData.strengthOfAlkohol > 0 &&
-      formData.strengthOfAlkohol <= 100;
+      formData.strengthOfAlkohol >= 0 &&
+      formData.strengthOfAlkohol <= 100 && formData.strengthOfAlkohol.trim();
     const dateIsValid = formData.date.toString() !== "Invalid Date";
     const timeIsValid = regTime.test(formData.time) === true;
     const emailIsValid = regEmail.test(formData.email) === true;
@@ -169,13 +171,13 @@ function BreathalyzerForm({ onSubmitBtn }) {
         invalid={!inputValue.date.isValid || !inputValue.time.isValid}
         textInputConfig1={{
           placeholder: "HH:MM",
-          keyboardType: "number-pad",
+          keyboardType: "default",
           onChangeText: inputChangedHandle.bind(this, "time"),
           value: inputValue.time.value,
         }}
         textInputConfig2={{
           placeholder: "YYYY-MM-DD",
-          keyboardType: "number-pad",
+          keyboardType: "default",
           onChangeText: inputChangedHandle.bind(this, "date"),
           value: inputValue.date.value,
         }}
