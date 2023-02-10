@@ -9,7 +9,7 @@ class Drink {
   ingredients: string[];
 
   constructor(
-    id: string,
+    drinkId: string,
     nameDrink: string,
     image: string,
     category: string,
@@ -18,7 +18,7 @@ class Drink {
     instructions: string,
     ingredients: string[]
   ) {
-    this.drinkId = id;
+    this.drinkId = drinkId;
     this.nameDrink = nameDrink;
     this.image = image;
     this.category = category;

@@ -1,6 +1,6 @@
 import { View, StyleSheet, Alert, Text, ScrollView } from "react-native";
-import { Input, MultipleInput} from "./Input";
-import RadioButton from "./RadioButton"
+import { Input, MultipleInput } from "./Input";
+import RadioButton from "./RadioButton";
 
 import { useState } from "react";
 import Colors from "../../constants/colors";
@@ -44,7 +44,6 @@ function BreathalyzerForm({ onSubmitBtn }) {
     const regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const regTime = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
 
-    console.log("TEST ! ! !");
     const formData = {
       name: inputValue.name.value,
       gender: male ? "male" : "female",
@@ -61,11 +60,14 @@ function BreathalyzerForm({ onSubmitBtn }) {
       (male === false && female === true);
     const weightIsValid = !isNaN(formData.weight) && formData.weight > 0;
     const amountOfAkoholoIsValid =
-      !isNaN(formData.amountOfAlkohol) && formData.amountOfAlkohol >= 0 && formData.amountOfAlkohol.trim();
+      !isNaN(formData.amountOfAlkohol) &&
+      formData.amountOfAlkohol >= 0 &&
+      formData.amountOfAlkohol.trim();
     const strenghtOfAkoholoIsValid =
       !isNaN(formData.strengthOfAlkohol) &&
       formData.strengthOfAlkohol >= 0 &&
-      formData.strengthOfAlkohol <= 100 && formData.strengthOfAlkohol.trim();
+      formData.strengthOfAlkohol <= 100 &&
+      formData.strengthOfAlkohol.trim();
     const dateIsValid = formData.date.toString() !== "Invalid Date";
     const timeIsValid = regTime.test(formData.time) === true;
     const emailIsValid = regEmail.test(formData.email) === true;
