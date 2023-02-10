@@ -13,6 +13,8 @@ import AlkoholContextProvider from "./store/alkoholContext";
 import { init } from "./util/database";
 import * as SplashScreen from "expo-splash-screen";
 import { MenuProvider } from "react-native-popup-menu";
+import { Ionicons } from "@expo/vector-icons";
+
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -50,7 +52,7 @@ export default function App() {
                     headerTintColor: Colors.green200,
                     headerTitleAlign: "center",
                     headerTitleStyle: {
-                      fontSize: 30,
+                      fontSize: 50,
                     },
                   }}
                 >
@@ -68,6 +70,7 @@ export default function App() {
                       title: "Drinks",
                       headerShown: false,
                       contentStyle: { backgroundColor: Colors.green600 },
+                      
                     }}
                   />
                   <Stack.Screen

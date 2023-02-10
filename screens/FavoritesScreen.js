@@ -40,23 +40,21 @@ function FavoritesScreen({ navigation }) {
       <View style={styles.appContainer}>
         <Menu onSelect={(value) => deleteFavoriteDrinkById(id)}>
           <MenuTrigger
-            triggerOnLongPress={true}
-            onPress={()=>console.log("GGGGGGGGGg")}
-            children={
-              <DrinkGridTile
-                id={id}
-                name={name}
-                image={image}
-                onPress={() => {
-                  navigation.navigate("DrinkDetailScreen", {
-                    drinkId: id,
-                    drinkName: name,
-                  });
-                }}
-              />
-            }
+            // triggerOnLongPress={true}
+            onPress={() => console.log("GGGGGGGGGg")}
           >
-            {/* <Text>Delete</Text> */}
+            {/* <Text style={{ textAlign: "right" , paddingEnd:14}}>X</Text> */}
+            <DrinkGridTile
+              id={id}
+              name={name}
+              image={image}
+              onPress={() => {
+                navigation.navigate("DrinkDetailScreen", {
+                  drinkId: id,
+                  drinkName: name,
+                });
+              }}
+            />
           </MenuTrigger>
           <MenuOptions>
             <MenuOption value={1} text="Delete" />

@@ -1,4 +1,10 @@
-import { View, StyleSheet, FlatList, ActivityIndicator } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  Text,
+} from "react-native";
 import DrinkGridTile from "../components/DrinkGridTile";
 import MenuItem from "../components/MenuItem";
 import { MenuLabels } from "../data/data";
@@ -6,6 +12,14 @@ import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { AlkoholContext } from "../store/alkoholContext";
 import { fetchDrinks } from "../util/http";
+import { Ionicons } from "@expo/vector-icons";
+import Colors from "../constants/colors";
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from "react-native-popup-menu";
 
 function DrinksScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
@@ -15,6 +29,34 @@ function DrinksScreen({ navigation }) {
   const alkohol = alkoholCtx.alkoholName;
 
   useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <Menu
+            onSelect={(value) => {
+              console.log("kliknąłeś: " + value);
+            }}
+          >
+            <MenuTrigger
+            // onPress={() => console.log("GGGGGGGGGg")}
+            >
+              <View style={{ justifyContent: "flex-end", paddingRight: 10 }}>
+                <Ionicons
+                  name="settings-outline"
+                  color={Colors.green200}
+                  size={24}
+                />
+              </View>
+            </MenuTrigger>
+            <MenuOptions>
+              <MenuOption value={1} text="Notifications" />
+              <MenuOption value={2} text="Autentication" />
+            </MenuOptions>
+          </Menu>
+        );
+      },
+    });
+
     async function getDrinks() {
       setLoading(false);
       try {
