@@ -12,15 +12,13 @@ function MenuItem({ name, image, onPress }) {
     alkohol == name ? styles.pressedImageContainer : styles.imageContainer;
 
   return (
-    <View>
-      <View style={styles.screen}>
-        <Pressable onPress={onPress}>
-          <View style={imageStyle}>
-            <Image style={styles.image} source={image} />
-          </View>
-        </Pressable>
-        <Text style={styles.text}>{name}</Text>
-      </View>
+    <View style={styles.screen}>
+      <Pressable onPress={onPress}>
+        <View style={imageStyle}>
+          <Image style={styles.image} source={image} />
+        </View>
+      </Pressable>
+      <Text style={styles.text}>{name}</Text>
     </View>
   );
 }
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     height: 40,
     overflow: "hidden",
   },
-  text:{
-    color:Colors.green900
+  text: {
+    color: Colors.green900
   }
 });

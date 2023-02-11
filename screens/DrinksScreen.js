@@ -118,9 +118,11 @@ const styles = StyleSheet.create({
   },
   menuLabelContainer: {
     height: 90,
+    marginHorizontal: 12,
+    marginTop: 5
   },
   drinksContainer: {
-    flex:1,
+    flex: 1,
     marginBottom: 60,
   },
   indicator: {

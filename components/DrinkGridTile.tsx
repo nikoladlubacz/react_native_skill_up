@@ -38,7 +38,7 @@ export default DrinkGridTile;
 const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
-    margin: 12,
+    margin: 10,
     height: 200,
     borderRadius: 8,
     elevation: 4,
