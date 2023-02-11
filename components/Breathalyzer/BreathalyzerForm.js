@@ -218,11 +218,6 @@ const styles = StyleSheet.create({
   radioButtonContainer: {
     flexDirection: "row",
   },
-  label: {
-    color: Colors.green200,
-    fontSize: 12,
-    margimBottom: 4,
-  },
   errorText: {
     fontSize: 18,
     fontWeight: "bold",

@@ -19,7 +19,7 @@ function MenuItem({ name, image, onPress }) {
             <Image style={styles.image} source={image} />
           </View>
         </Pressable>
-        <Text>{name}</Text>
+        <Text style={styles.text}>{name}</Text>
       </View>
     </View>
   );
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 150 / 2,
     borderWidth: 1,
-    borderColor: Colors.green800,
-    backgroundColor: Colors.green200,
+    borderColor: Colors.green3,
+    backgroundColor: Colors.green1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 150 / 2,
     borderWidth: 1,
-    borderColor: Colors.green800,
-    backgroundColor: Colors.green600,
+    borderColor: Colors.green4,
+    backgroundColor: Colors.green3,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -59,4 +59,7 @@ const styles = StyleSheet.create({
     height: 40,
     overflow: "hidden",
   },
+  text:{
+    color:Colors.green5
+  }
 });

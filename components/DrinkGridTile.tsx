@@ -13,13 +13,12 @@ function DrinkGridTile({ name, image, onPress }: Props) {
   return (
     <View style={styles.gridItem}>
       <Pressable
-        android_ripple={{ color: Colors.green800 }}
+        android_ripple={{ color: Colors.green4}}
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
         onPress={onPress}
-        onLongPress ={()=>{console.log("ddddddd");}}
       >
         <View style={styles.innerContainer}>
           <View style={styles.imageContainer}>
@@ -40,11 +39,11 @@ const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
     margin: 12,
-    height: 180,
+    height: 200,
     borderRadius: 8,
     elevation: 4,
-    backgroundColor: Colors.green200,
-    shadowColor: "black",
+    backgroundColor: Colors.green25,
+    shadowColor: Colors.green4,
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
@@ -54,32 +53,27 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonPressed: {
-    opacity: 0.5,
-  },
-  rootScreen: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "cover",
-  },
-  backgroundImage: {
-    opacity: 0.65,
+    opacity: 0.45,
   },
   innerContainer: {
     width: "100%",
     height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
   },
   title: {
     fontSize: 14,
     textAlign: "center",
+    color: Colors.green4,
+    marginHorizontal: 4,
+    fontWeight:"bold"
   },
   image: {
     flex: 1,
+    resizeMode: 'cover',
   },
   imageContainer: {
     width: "100%",
     height: "80%",
+   
   },
   titleContainer: {
     height: "20%",

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   label: {
-    color: Colors.green200,
+    color: Colors.green4,
     fontSize: 14,
     paddingBottom: 6,
   },
@@ -70,9 +70,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: Colors.green400,
+    backgroundColor: Colors.green1,
     borderRadius: 18,
     height: 40,
+    borderColor: Colors.green3,
   },
   multipleInput: {
     flexDirection: "row",
@@ -80,15 +81,17 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    backgroundColor: Colors.green400,
+    color: Colors.green4,
+    backgroundColor: Colors.green1,
     paddingLeft: 14,
     borderRadius: 18,
     fontSize: 18,
   },
   suffix: {
-    paddingHorizontal: 24,
-    fontWeight: "bold",
-    color: "black",
+    paddingRight: 24,
+    paddingLeft: 4,
+    // fontWeight: "bold",
+    color: Colors.green4,
   },
   titleCheckbox: {
     marginLeft: 18,

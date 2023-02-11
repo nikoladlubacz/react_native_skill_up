@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { View, FlatList, Text, StyleSheet, ActivityIndicator } from "react-native";
 import DrinkItem from "../components/DrinkItem";
 import IconButton from "../components/IconButton";
 import Colors from "../constants/colors";
@@ -73,7 +73,7 @@ function DrinkDetailScreen({ route, navigation }) {
         return (
           <IconButton
             icon={drinkIsFavorite ? "star" : "star-outline"}
-            color={Colors.green200}
+            color={Colors.light}
             onPress={favoriteDrinkHandler}
           />
         );
@@ -87,10 +87,13 @@ function DrinkDetailScreen({ route, navigation }) {
 
   return (
     <View>
-      <FlatList
-        data={drinkDetailsList}
-        renderItem={({ item }) => renderDrinkDetailItem(item)}
-      />
+      {isLoading ? (
+        <ActivityIndicator size="large" style={styles.indicator} />
+      ) : (
+        <FlatList
+          data={drinkDetailsList}
+          renderItem={({ item }) => renderDrinkDetailItem(item)}
+        />)}
     </View>
   );
 }
@@ -100,12 +103,13 @@ export default DrinkDetailScreen;
 const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
+    backgroundColor: Colors.green4
   },
   headerTitle: {
     width: 260,
     marginVertical: 12,
     fontSize: 24,
     textAlign: "center",
-    color: Colors.green200,
+    color: Colors.light,
   },
 });

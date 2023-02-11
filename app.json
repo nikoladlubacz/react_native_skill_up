@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#023020"
+      "backgroundColor": "#333d32",
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -28,6 +28,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "androidNavigationBar": {
+      "visible": true,
+      "backgroundColor": "#333d32"
     }
   }
 }

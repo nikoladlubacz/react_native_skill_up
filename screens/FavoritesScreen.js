@@ -20,6 +20,7 @@ import {
   MenuTrigger,
 } from "react-native-popup-menu";
 import { Button } from "react-native-elements";
+import Colors from "../constants/colors";
 
 function FavoritesScreen({ navigation }) {
   const [loadedFavoriteDrinks, setLoadedFavoriteDrinks] = useState([]);
@@ -65,7 +66,7 @@ function FavoritesScreen({ navigation }) {
   }
 
   return (
-    <View>
+    <View style ={styles.appContainer}>
       <View style={styles.drinksContainer}>
         <FlatList
           data={loadedFavoriteDrinks}
@@ -83,10 +84,12 @@ export default FavoritesScreen;
 
 const styles = StyleSheet.create({
   appContainer: {
-    width: "50%",
+    flex:1,
+    backgroundColor: Colors.green2,
   },
   drinksContainer: {
-    marginBottom: 10,
+    marginBottom: 60,
+
   },
   contextMenuContainer: {
     // position: "absolute",

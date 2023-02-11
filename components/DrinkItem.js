@@ -28,7 +28,9 @@ function DrinkItem(drink) {
 
   return (
     <View>
-      <Image style={styles.image} source={{ uri: drink.drink.image }} />
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: drink.drink.image }} />
+      </View>
       <View style={styles.detailContainer}>
         <View style={styles.buttons}>
           <DetailButton
@@ -67,9 +69,18 @@ function DrinkItem(drink) {
 export default DrinkItem;
 
 const styles = StyleSheet.create({
+
+  imageContainer: {
+    elevation: 23,
+    backgroundColor: Colors.green5,
+    shadowColor: Colors.green5,
+    shadowOpacity: 0.7,
+    shadowOffset: { width: 0, height: 14 },
+  },
   image: {
     width: "100%",
     height: 350,
+    resizeMode: 'stretch',
   },
   detailContainer: {
     margin: 24,
@@ -77,7 +88,7 @@ const styles = StyleSheet.create({
   ingredientStyle: {
     fontSize: 16,
     margin: 2,
-    color: Colors.grey800,
+    color: Colors.green5,
     marginVertical: 4,
   },
   ingredientsContainer: {
@@ -87,7 +98,7 @@ const styles = StyleSheet.create({
   instruction: {
     fontSize: 18,
     margin: 2,
-    color: Colors.grey800,
+    color: Colors.green5,
     textAlign: "center",
   },
   instructionContainer: {

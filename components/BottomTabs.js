@@ -12,12 +12,22 @@ function BottomTabsNavigator() {
   return (
     <BottomTab.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.grey800 },
-        headerTintColor: Colors.green200,
+        headerStyle: { backgroundColor: Colors.green4 },
+        headerTintColor: Colors.light,
         headerTitleAlign: "center",
         headerTitleStyle: {
           fontSize: 30,
         },
+        tabBarActiveTintColor: Colors.green4,
+        tabBarInactiveTintColor: Colors.green1,
+        tabBarStyle: {
+          paddingVertical: 5,
+          borderColor: Colors.green4,
+          backgroundColor: Colors.green3,
+          position: "absolute",
+          height: 60,
+        },
+        tabBarLabelStyle: { paddingBottom: 3 },
       }}
     >
       <BottomTab.Screen
@@ -47,7 +57,7 @@ function BottomTabsNavigator() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="help-outline" color={color} size={size} />
           ),
-          tabBarLabel:"Breathalyzer"
+          tabBarLabel: "Breathalyzer",
         }}
       />
     </BottomTab.Navigator>

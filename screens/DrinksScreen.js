@@ -3,7 +3,6 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
-  Text,
 } from "react-native";
 import DrinkGridTile from "../components/DrinkGridTile";
 import MenuItem from "../components/MenuItem";
@@ -37,13 +36,11 @@ function DrinksScreen({ navigation }) {
               console.log("kliknąłeś: " + value);
             }}
           >
-            <MenuTrigger
-            // onPress={() => console.log("GGGGGGGGGg")}
-            >
+            <MenuTrigger>
               <View style={{ justifyContent: "flex-end", paddingRight: 10 }}>
                 <Ionicons
                   name="settings-outline"
-                  color={Colors.green200}
+                  color={Colors.light}
                   size={24}
                 />
               </View>
@@ -117,7 +114,7 @@ export default DrinksScreen;
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    marginHorizontal: 6,
+    backgroundColor: Colors.green2,
   },
   menuLabelContainer: {
     height: 90,

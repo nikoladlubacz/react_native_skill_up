@@ -19,6 +19,8 @@ import { Ionicons } from "@expo/vector-icons";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+  
+
   const [dbInitialized, setDbInitialized] = useState(false);
 
   useEffect(() => {
@@ -40,7 +42,8 @@ export default function App() {
   return (
     <>
       <View style={styles.container} onLayout={onLayoutRootView}>
-        <StatusBar style="auto" />
+        <StatusBar backgroundColor="#333d32" style="light" />
+
         <MenuProvider>
           <FavoritesContextProvider>
             <AlkoholContextProvider>
@@ -48,8 +51,8 @@ export default function App() {
                 <Stack.Navigator
                   initialRouteName="WelcomeScreen"
                   screenOptions={{
-                    headerStyle: { backgroundColor: Colors.grey800 },
-                    headerTintColor: Colors.green200,
+                    headerStyle: { backgroundColor: Colors.green4 },
+                    headerTintColor: Colors.light,
                     headerTitleAlign: "center",
                     headerTitleStyle: {
                       fontSize: 50,
@@ -69,15 +72,14 @@ export default function App() {
                     options={{
                       title: "Drinks",
                       headerShown: false,
-                      contentStyle: { backgroundColor: Colors.green600 },
-                      
+                      // contentStyle: { backgroundColor: Colors.error500 },
                     }}
                   />
                   <Stack.Screen
                     name="DrinkDetailScreen"
                     component={DrinkDetailScreen}
                     options={{
-                      contentStyle: { backgroundColor: Colors.green600 },
+                      contentStyle: { backgroundColor: Colors.green1 },
                     }}
                   />
                 </Stack.Navigator>
@@ -95,3 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+function changeNavigationBarColor(arg0: string, arg1: boolean) {
+  throw new Error("Function not implemented.");
+}
+

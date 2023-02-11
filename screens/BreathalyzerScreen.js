@@ -109,15 +109,6 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     padding: 16,
-    backgroundColor: Colors.green1000,
-  },
-  inputContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 24,
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
+    backgroundColor: Colors.green2,
   },
 });
