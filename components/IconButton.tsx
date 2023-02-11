@@ -5,15 +5,16 @@ import React from "react";
 type Props = {
   icon: string;
   color: string;
+  size: number;
   onPress: () => void;
 };
-function IconButton({ icon, color, onPress }: Props) {
+function IconButton({ icon, color, onPress, size }: Props) {
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => pressed && styles.pressed}
     >
-      <Ionicons name={icon} size={24} color={color} />
+      <Ionicons name={icon} size={size || 24} color={color} />
     </Pressable>
   );
 }

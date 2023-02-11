@@ -21,13 +21,17 @@ function BottomTabsNavigator() {
         tabBarActiveTintColor: Colors.green700,
         tabBarInactiveTintColor: Colors.green100,
         tabBarStyle: {
-          paddingVertical: 5,
+          paddingVertical: 1,
           borderColor: Colors.green700,
           backgroundColor: Colors.green500,
           position: "absolute",
           height: 60,
         },
-        tabBarLabelStyle: { paddingBottom: 3 },
+        tabBarIcon: {
+          margimBottom: 0,
+          paddingBottom: 0
+        },
+        tabBarLabelStyle: { paddingBottom: 4, fontSize: 12, margimTop: 0, paddingTop: 0 },
       }}
     >
       <BottomTab.Screen
@@ -36,7 +40,7 @@ function BottomTabsNavigator() {
         options={{
           title: "Drinks",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <Ionicons name="wine-outline" color={color} size={size} />
           ),
         }}
       />
@@ -50,14 +54,14 @@ function BottomTabsNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Breathalyzer"
+        name="Breathalyser"
         component={BreathalyzerScreen}
         options={{
           title: "How Drunk Are You ?",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="help-outline" color={color} size={size} />
+            <Ionicons name="skull-outline" color={color} size={size} />
           ),
-          tabBarLabel: "Breathalyzer",
+          tabBarLabel: "Breathalyser",
         }}
       />
     </BottomTab.Navigator>

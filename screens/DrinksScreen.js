@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
     height: 90,
   },
   drinksContainer: {
-    marginBottom: 100,
+    flex:1,
+    marginBottom: 60,
   },
   indicator: {
     marginTop: 200,

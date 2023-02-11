@@ -7,7 +7,7 @@ import {
   Button,
   Alert,
 } from "react-native";
-import BreathalyzerForm from "../components/Breathalyzer/BreathalyzerForm";
+import BreathalyzerForm from "../components/Breathalyzer/BreathalyserForm";
 import Colors from "../constants/colors";
 import React from "react";
 import { fetchRandomDrink } from "../util/http";
@@ -55,7 +55,7 @@ function BreathalyzerScreen({ navigation }) {
 
           {
             text: "Cancel",
-            onPress: () => {},
+            onPress: () => { },
             style: "cancel",
           },
           {
@@ -83,7 +83,7 @@ function BreathalyzerScreen({ navigation }) {
 
           {
             text: "Cancel",
-            onPress: () => {},
+            onPress: () => { },
             style: "cancel",
           },
           {
@@ -108,7 +108,7 @@ export default BreathalyzerScreen;
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    padding: 16,
-    backgroundColor: Colors.green2,
+    backgroundColor: Colors.green300,
+    paddingBottom:460
   },
 });

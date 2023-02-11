@@ -68,7 +68,6 @@ function DrinkDetailScreen({ route, navigation }) {
       headerTitle: () => {
         return <CustomHeader title={drinkName} />;
       },
-      headerTitleAlign: "center",
       headerRight: () => {
         return (
           <IconButton
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.green700
   },
   headerTitle: {
-    width: 260,
+    marginRight: 132,
     marginVertical: 12,
     fontSize: 24,
     textAlign: "center",

@@ -119,7 +119,7 @@ function BreathalyzerForm({ onSubmitBtn }) {
     !inputValue.email.isValid;
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Input
         label="Your name:"
         measurementUnit=""
@@ -203,17 +203,22 @@ function BreathalyzerForm({ onSubmitBtn }) {
           Check
         </PrimaryButton>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 export default BreathalyzerForm;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    // flex:1,
+    padding: 16,
+    // paddingBottom:360
+  },
   button: {
     alignItems: "center",
-    marginTop: 16,
+    marginTop: 24,
+    marginBottom:60
   },
   radioButtonContainer: {
     flexDirection: "row",

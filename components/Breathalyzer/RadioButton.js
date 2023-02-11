@@ -24,6 +24,7 @@ function RadioButton({
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checkedColor={Colors.green700}
+          uncheckedColor={Colors.green100}
           onPress={onPressMale}
           containerStyle={{
             backgroundColor: "transparent",
@@ -41,6 +42,7 @@ function RadioButton({
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checkedColor={Colors.green700}
+          uncheckedColor={Colors.green100}
           onPress={onPressFemale}
           containerStyle={{
             backgroundColor: "transparent",

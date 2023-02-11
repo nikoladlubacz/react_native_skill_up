@@ -19,7 +19,7 @@ import { Ionicons } from "@expo/vector-icons";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  
+
 
   const [dbInitialized, setDbInitialized] = useState(false);
 
@@ -57,37 +57,38 @@ export default function App() {
                     headerTitleStyle: {
                       fontSize: 50,
                     },
-                  }}
+                  }
+                }
                 >
-                  <Stack.Screen
-                    name="WelcomeScreen"
-                    component={WelcomeScreen}
-                    options={{
-                      headerShown: false,
-                    }}
-                  />
-                  <Stack.Screen
-                    name="DrinksScreen"
-                    component={BottomTabsNavigator}
-                    options={{
-                      title: "Drinks",
-                      headerShown: false,
-                      // contentStyle: { backgroundColor: Colors.error500 },
-                    }}
-                  />
-                  <Stack.Screen
-                    name="DrinkDetailScreen"
-                    component={DrinkDetailScreen}
-                    options={{
-                      contentStyle: { backgroundColor: Colors.green100 },
-                    }}
-                  />
-                </Stack.Navigator>
-              </NavigationContainer>
-            </AlkoholContextProvider>
-          </FavoritesContextProvider>
-        </MenuProvider>
-      </View>
+                <Stack.Screen
+                  name="WelcomeScreen"
+                  component={WelcomeScreen}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="DrinksScreen"
+                  component={BottomTabsNavigator}
+                  options={{
+                    title: "Drinks",
+                    headerShown: false,
+                    // contentStyle: { backgroundColor: Colors.error500 },
+                  }}
+                />
+                <Stack.Screen
+                  name="DrinkDetailScreen"
+                  component={DrinkDetailScreen}
+                  options={{
+                    contentStyle: { backgroundColor: Colors.green100 },
+                  }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </AlkoholContextProvider>
+        </FavoritesContextProvider>
+      </MenuProvider>
+    </View>
     </>
   );
 }
