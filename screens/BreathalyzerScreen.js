@@ -29,7 +29,6 @@ function BreathalyzerScreen({ navigation }) {
     }
     getRandomDrink();
   }, []);
-  console.log(randomDrink);
 
   function checkHandler(formData) {
     if (formData.amountOfAlkohol == 0 || formData.strengthOfAlkohol == 0) {
