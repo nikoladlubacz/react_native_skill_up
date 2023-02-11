@@ -3,10 +3,15 @@ import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import Colors from "../constants/colors";
 import DetailButton from "./DetailButton";
 import { useState } from "react";
+import { Dimensions } from 'react-native';
+
 
 function DrinkItem(drink) {
   const [ingredientsVisibility, setIngredientsVisibility] = useState(true);
   const [stepsVisibility, setStepsVisibility] = useState();
+
+  const windowHeight = Dimensions.get('window').height;
+
 
   const pressedIngrediens = () => {
     setIngredientsVisibility(true);
@@ -29,7 +34,7 @@ function DrinkItem(drink) {
   return (
     <View>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: drink.drink.image }} />
+        <Image style={[styles.image, { height: windowHeight * 0.4 }]} source={{ uri: drink.drink.image }} />
       </View>
       <View style={styles.detailContainer}>
         <View style={styles.buttons}>
@@ -79,8 +84,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 350,
-    resizeMode: 'stretch',
+    // height: 350,
+    resizeMode: 'cover',
   },
   detailContainer: {
     margin: 24,

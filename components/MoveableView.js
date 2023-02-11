@@ -8,7 +8,7 @@ function MoveableView(props) {
     useEffect(() => {
         Animated.timing(fadeAnim, {
             toValue: props.end,
-            duration: 2000,
+            duration: 1500,
             useNativeDriver: true,
         }).start();
     }, [fadeAnim, props.end]);

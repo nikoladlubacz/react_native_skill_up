@@ -8,7 +8,7 @@ function FadeInView(props) {
     useEffect(() => {
         Animated.timing(opacity, {
             toValue: 1,
-            duration: 2000,
+            duration: 1500,
             useNativeDriver: true,
         }).start();
     });
@@ -17,12 +17,12 @@ function FadeInView(props) {
         <Animated.View
             style={{
                 ...props.style,
-                opacity: opacity,
+                // opacity: opacity,
                 transform: [
                     {
                         scale: opacity.interpolate({
                             inputRange: [0, 1],
-                            outputRange: [0.5, 1],
+                            outputRange: [0, 1],
                         })
                     },
                 ],
