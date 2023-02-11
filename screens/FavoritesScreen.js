@@ -85,7 +85,7 @@ export default FavoritesScreen;
 const styles = StyleSheet.create({
   appContainer: {
     flex:1,
-    backgroundColor: Colors.green2,
+    backgroundColor: Colors.green300,
   },
   drinksContainer: {
     marginBottom: 60,

@@ -40,7 +40,7 @@ function DrinksScreen({ navigation }) {
               <View style={{ justifyContent: "flex-end", paddingRight: 10 }}>
                 <Ionicons
                   name="settings-outline"
-                  color={Colors.light}
+                  color={Colors.light100}
                   size={24}
                 />
               </View>
@@ -114,7 +114,7 @@ export default DrinksScreen;
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    backgroundColor: Colors.green2,
+    backgroundColor: Colors.green300,
   },
   menuLabelContainer: {
     height: 90,

@@ -23,7 +23,7 @@ function RadioButton({
           checked={checkedMale}
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
-          checkedColor={Colors.green4}
+          checkedColor={Colors.green700}
           onPress={onPressMale}
           containerStyle={{
             backgroundColor: "transparent",
@@ -40,7 +40,7 @@ function RadioButton({
           checked={checkedFemale}
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
-          checkedColor={Colors.green4}
+          checkedColor={Colors.green700}
           onPress={onPressFemale}
           containerStyle={{
             backgroundColor: "transparent",
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   label: {
-    color: Colors.green4,
+    color: Colors.green700,
     fontSize: 14,
     paddingBottom: 6,
   },

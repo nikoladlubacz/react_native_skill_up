@@ -51,8 +51,8 @@ export default function App() {
                 <Stack.Navigator
                   initialRouteName="WelcomeScreen"
                   screenOptions={{
-                    headerStyle: { backgroundColor: Colors.green4 },
-                    headerTintColor: Colors.light,
+                    headerStyle: { backgroundColor: Colors.green700 },
+                    headerTintColor: Colors.light100,
                     headerTitleAlign: "center",
                     headerTitleStyle: {
                       fontSize: 50,
@@ -79,7 +79,7 @@ export default function App() {
                     name="DrinkDetailScreen"
                     component={DrinkDetailScreen}
                     options={{
-                      contentStyle: { backgroundColor: Colors.green1 },
+                      contentStyle: { backgroundColor: Colors.green100 },
                     }}
                   />
                 </Stack.Navigator>

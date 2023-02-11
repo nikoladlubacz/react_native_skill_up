@@ -12,18 +12,18 @@ function BottomTabsNavigator() {
   return (
     <BottomTab.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.green4 },
-        headerTintColor: Colors.light,
+        headerStyle: { backgroundColor: Colors.green700 },
+        headerTintColor: Colors.light100,
         headerTitleAlign: "center",
         headerTitleStyle: {
           fontSize: 30,
         },
-        tabBarActiveTintColor: Colors.green4,
-        tabBarInactiveTintColor: Colors.green1,
+        tabBarActiveTintColor: Colors.green700,
+        tabBarInactiveTintColor: Colors.green100,
         tabBarStyle: {
           paddingVertical: 5,
-          borderColor: Colors.green4,
-          backgroundColor: Colors.green3,
+          borderColor: Colors.green700,
+          backgroundColor: Colors.green500,
           position: "absolute",
           height: 60,
         },

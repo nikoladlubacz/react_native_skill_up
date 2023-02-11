@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
 
   imageContainer: {
     elevation: 23,
-    backgroundColor: Colors.green5,
-    shadowColor: Colors.green5,
+    backgroundColor: Colors.green900,
+    shadowColor: Colors.green900,
     shadowOpacity: 0.7,
     shadowOffset: { width: 0, height: 14 },
   },
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   ingredientStyle: {
     fontSize: 16,
     margin: 2,
-    color: Colors.green5,
+    color: Colors.green900,
     marginVertical: 4,
   },
   ingredientsContainer: {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   instruction: {
     fontSize: 18,
     margin: 2,
-    color: Colors.green5,
+    color: Colors.green900,
     textAlign: "center",
   },
   instructionContainer: {

@@ -13,7 +13,7 @@ function DrinkGridTile({ name, image, onPress }: Props) {
   return (
     <View style={styles.gridItem}>
       <Pressable
-        android_ripple={{ color: Colors.green4}}
+        android_ripple={{ color: Colors.green700}}
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.buttonPressed : null,
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 8,
     elevation: 4,
-    backgroundColor: Colors.green25,
-    shadowColor: Colors.green4,
+    backgroundColor: Colors.green400,
+    shadowColor: Colors.green700,
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 14,
     textAlign: "center",
-    color: Colors.green4,
+    color: Colors.green700,
     marginHorizontal: 4,
     fontWeight:"bold"
   },

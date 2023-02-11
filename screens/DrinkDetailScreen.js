@@ -73,7 +73,7 @@ function DrinkDetailScreen({ route, navigation }) {
         return (
           <IconButton
             icon={drinkIsFavorite ? "star" : "star-outline"}
-            color={Colors.light}
+            color={Colors.light100}
             onPress={favoriteDrinkHandler}
           />
         );
@@ -103,13 +103,13 @@ export default DrinkDetailScreen;
 const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
-    backgroundColor: Colors.green4
+    backgroundColor: Colors.green700
   },
   headerTitle: {
     width: 260,
     marginVertical: 12,
     fontSize: 24,
     textAlign: "center",
-    color: Colors.light,
+    color: Colors.light100,
   },
 });

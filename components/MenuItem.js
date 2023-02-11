@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 150 / 2,
     borderWidth: 1,
-    borderColor: Colors.green3,
-    backgroundColor: Colors.green1,
+    borderColor: Colors.green500,
+    backgroundColor: Colors.green100,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 150 / 2,
     borderWidth: 1,
-    borderColor: Colors.green4,
-    backgroundColor: Colors.green3,
+    borderColor: Colors.green700,
+    backgroundColor: Colors.green500,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   text:{
-    color:Colors.green5
+    color:Colors.green900
   }
 });
