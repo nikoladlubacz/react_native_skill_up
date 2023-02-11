@@ -37,11 +37,12 @@ function DrinksScreen({ navigation }) {
             }}
           >
             <MenuTrigger>
-              <View style={{ justifyContent: "flex-end", paddingRight: 10 }}>
+              <View style={styles.menuContext}>
                 <Ionicons
                   name="settings-outline"
                   color={Colors.light100}
                   size={24}
+
                 />
               </View>
             </MenuTrigger>
@@ -128,4 +129,9 @@ const styles = StyleSheet.create({
   indicator: {
     marginTop: 200,
   },
+  menuContext: {
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginRight: 10,
+  }
 });
