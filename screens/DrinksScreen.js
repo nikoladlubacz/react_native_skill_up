@@ -35,6 +35,7 @@ function DrinksScreen({ navigation }) {
   useEffect(() => {
     async function getDrinks() {
       try {
+        setFetchingFailed(false)
         const fetchedDrinks = await fetchDrinks(alcohol);
         setDrinks(fetchedDrinks);
       } catch (error) {
@@ -48,49 +49,47 @@ function DrinksScreen({ navigation }) {
 
   return (
     <View style={styles.appContainer}>
+      <View style={styles.menuLabelContainer}>
+        <FlatList
+          horizontal={true}
+          data={MenuLabels}
+          renderItem={({ item }) => (
+            <MenuItem
+              name={item.name}
+              image={item.image}
+              onPress={() => alcoholCtx.updateAlcoholName(item.name)}
+            />
+          )}
+        />
+      </View>
       {fetchingFailed ?
         (
           <ErrorHandling />
         ) :
         (
-          <View style={{ flex: 1 }}>
-            <View style={styles.menuLabelContainer}>
+          <View style={styles.drinksContainer}
+          >
+            {isLoading ? (
+              <ActivityIndicator size="large" style={styles.indicator} />
+            ) : (
               <FlatList
-                horizontal={true}
-                data={MenuLabels}
+                data={drinks[0]}
+                numColumns={2}
                 renderItem={({ item }) => (
-                  <MenuItem
+                  <DrinkGridTile
+                    id={item.id}
                     name={item.name}
                     image={item.image}
-                    onPress={() => alcoholCtx.updateAlcoholName(item.name)}
+                    onPress={() =>
+                      navigation.navigate("DrinkDetailScreen", {
+                        drinkId: item.id,
+                        drinkName: item.name,
+                      })
+                    }
                   />
                 )}
               />
-            </View>
-            <View style={styles.drinksContainer}
-            >
-              {isLoading ? (
-                <ActivityIndicator size="large" style={styles.indicator} />
-              ) : (
-                <FlatList
-                  data={drinks[0]}
-                  numColumns={2}
-                  renderItem={({ item }) => (
-                    <DrinkGridTile
-                      id={item.id}
-                      name={item.name}
-                      image={item.image}
-                      onPress={() =>
-                        navigation.navigate("DrinkDetailScreen", {
-                          drinkId: item.id,
-                          drinkName: item.name,
-                        })
-                      }
-                    />
-                  )}
-                />
-              )}
-            </View>
+            )}
           </View>
         )}
     </View>

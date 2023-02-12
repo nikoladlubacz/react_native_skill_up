@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, ActivityIndicator, } from "react-native";
 import DrinkGridTile from "../components/drinks/DrinkGridTile";
 import { fetchFavoriteDrinks } from "../util/database";
 import { useIsFocused } from "@react-navigation/native";
@@ -13,6 +13,7 @@ import {
 import Colors from "../constants/colors";
 
 function FavoritesScreen({ navigation }) {
+  const [isLoading, setLoading] = useState(true);
   const [loadedFavoriteDrinks, setLoadedFavoriteDrinks] = useState([]);
   const isFocused = useIsFocused();
 
@@ -20,6 +21,7 @@ function FavoritesScreen({ navigation }) {
     async function loadFavoriteDrinks() {
       const favoriteDrinks = await fetchFavoriteDrinks();
       setLoadedFavoriteDrinks(favoriteDrinks);
+      setLoading(false)
     }
     if (isFocused) {
       loadFavoriteDrinks();
@@ -53,15 +55,18 @@ function FavoritesScreen({ navigation }) {
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.drinksContainer}>
-        <FlatList
-          data={loadedFavoriteDrinks}
-          numColumns={2}
-          renderItem={({ item }) =>
-            renderDrinkItem(item.drinkId, item.nameDrink, item.image)
-          }
-        />
-      </View>
+      {isLoading ? (
+        <ActivityIndicator size="large" style={styles.indicator} />
+      ) : (
+        <View style={styles.drinksContainer}>
+          <FlatList
+            data={loadedFavoriteDrinks}
+            numColumns={2}
+            renderItem={({ item }) =>
+              renderDrinkItem(item.drinkId, item.nameDrink, item.image)
+            }
+          />
+        </View>)}
     </View>
   );
 }
@@ -75,5 +80,8 @@ const styles = StyleSheet.create({
   },
   drinksContainer: {
     marginBottom: 60,
+  },
+  indicator: {
+    marginTop: 200,
   },
 });

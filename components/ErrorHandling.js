@@ -1,25 +1,30 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import Colors from "../constants/colors";
 
 function ErrorHandling() {
     return (
-        <View style={styles.screenContainer}>
-            <Text style={styles.text}>No internet, no drinking!</Text>
-            <View style={styles.imageContainer}>
-                <Image
-                    style={styles.image}
-                    source={require("../assets/gif/no-internet.gif")} />
+        <ScrollView style={styles.appContainer}>
+            <View style={styles.screenContainer}>
+                <Text style={styles.text}>No internet, no drinking!</Text>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={styles.image}
+                        source={require("../assets/gif/no-internet.gif")} />
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
 export default ErrorHandling
 
 const styles = StyleSheet.create({
-    screenContainer: {
+    appContainer: {
         flex: 1,
+    },
+    screenContainer: {
         alignItems: "center",
+        paddingBottom: 60,
     },
     imageContainer: {
         width: 250,

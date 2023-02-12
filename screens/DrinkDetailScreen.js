@@ -28,20 +28,22 @@ function DrinkDetailScreen({ route, navigation }) {
         setDrinkDetailsList(fetchedDrink);
       } catch (error) {
         setFetchingFailed(true);
+      } finally {
+        setLoading(false);
       }
     }
-    
+
     async function loadFavoriteDrinkById() {
       const favoriteDrink = await fetchFavoriteDrinkById(drinkId);
       setDrinkIsFavorite(favoriteDrink.length > 0);
       if (favoriteDrink.length > 0) {
         setDrinkDetailsList(favoriteDrink);
+        setLoading(false);
       } else {
         getDrink();
       }
-      setLoading(false);
     }
-    
+
     if (isFocused) {
       loadFavoriteDrinkById();
     }
@@ -127,5 +129,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     color: Colors.light100,
+  },
+  indicator: {
+    marginTop: 200,
   },
 });
