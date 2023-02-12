@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import DrinkGridTile from "../components/drinks/DrinkGridTile";
-import MenuItem from "../components/drinks/CategoryItem";
+import CategoryItem from "../components/drinks/CategoryItem";
 import { MenuLabels } from "../models/menuFactory";
 import { AlcoholContext } from "../util/alcoholContext";
 import { fetchDrinks } from "../util/http";
@@ -52,9 +52,10 @@ function DrinksScreen({ navigation }) {
       <View style={styles.menuLabelContainer}>
         <FlatList
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
           data={MenuLabels}
           renderItem={({ item }) => (
-            <MenuItem
+            <CategoryItem
               name={item.name}
               image={item.image}
               onPress={() => alcoholCtx.updateAlcoholName(item.name)}
@@ -74,7 +75,9 @@ function DrinksScreen({ navigation }) {
             ) : (
               <FlatList
                 data={drinks[0]}
+                columnWrapperStyle={{ justifyContent: 'space-between' }}
                 numColumns={2}
+                showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
                   <DrinkGridTile
                     id={item.id}
@@ -104,11 +107,11 @@ const styles = StyleSheet.create({
   },
   menuLabelContainer: {
     height: 90,
-    marginHorizontal: 12,
-    marginTop: 5
+        marginTop: 5
   },
   drinksContainer: {
     flex: 1,
+    paddingHorizontal: 16,
     marginBottom: 60,
   },
   indicator: {

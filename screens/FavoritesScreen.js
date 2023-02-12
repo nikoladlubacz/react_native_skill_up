@@ -21,24 +21,6 @@ function FavoritesScreen({ navigation }) {
     }
   }, [isFocused]);
 
-  function renderDrinkItem(id, name, image) {
-    return (
-      <View style={styles.appContainer}>
-            <DrinkGridTile
-              id={id}
-              name={name}
-              image={image}
-              onPress={() => {
-                navigation.navigate("DrinkDetailScreen", {
-                  drinkId: id,
-                  drinkName: name,
-                });
-              }}
-            />
-      </View>
-    );
-  }
-
   return (
     <View style={styles.appContainer}>
       {isLoading ? (
@@ -47,12 +29,25 @@ function FavoritesScreen({ navigation }) {
         <View style={styles.drinksContainer}>
           <FlatList
             data={loadedFavoriteDrinks}
+            showsVerticalScrollIndicator={false}
+            columnWrapperStyle={{ justifyContent: 'space-between' }}
             numColumns={2}
             renderItem={({ item }) =>
-              renderDrinkItem(item.drinkId, item.nameDrink, item.image)
+              <DrinkGridTile
+                id={item.drinkId}
+                name={item.nameDrink}
+                image={item.image}
+                onPress={() =>
+                  navigation.navigate("DrinkDetailScreen", {
+                    drinkId: item.drinkId,
+                    drinkName: item.nameDrink,
+                  })
+                }
+              />
             }
           />
-        </View>)}
+        </View>
+      )}
     </View>
   );
 }
@@ -65,6 +60,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.green300,
   },
   drinksContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
     marginBottom: 60,
   },
   indicator: {

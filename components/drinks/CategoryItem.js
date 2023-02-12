@@ -1,5 +1,5 @@
 import { React, useContext } from "react";
-import { View, StyleSheet, Image, Text, Pressable } from "react-native";
+import { View, StyleSheet, Image, Text, Pressable, Dimensions } from "react-native";
 import Colors from "../../constants/colors";
 import { AlcoholContext } from "../../util/alcoholContext";
 
@@ -21,6 +21,7 @@ function CategoryItem({ name, image, onPress }) {
     </View>
   );
 }
+const windowWidth = Dimensions.get('window').width;
 
 export default CategoryItem;
 
@@ -29,11 +30,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    margin: 8,
+    margin: windowWidth / 36
   },
   imageContainer: {
-    width: 60,
-    height: 60,
+    width: windowWidth / 6,
+    height: windowWidth / 6,
     borderRadius: 150 / 2,
     borderWidth: 1,
     borderColor: Colors.green500,
@@ -42,8 +43,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   pressedImageContainer: {
-    width: 60,
-    height: 60,
+    width: windowWidth / 6,
+    height: windowWidth / 6,
     borderRadius: 150 / 2,
     borderWidth: 1,
     borderColor: Colors.green500,
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: 40,
-    height: 40,
+    width: "75%",
+    height: "75%",
     overflow: "hidden",
   },
   text: {
