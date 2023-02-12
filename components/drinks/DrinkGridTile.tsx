@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Pressable, Text, StyleSheet, Image } from "react-native";
-import Colors from "../constants/colors";
+import Colors from "../../constants/colors";
 
 type Props = {
   id: number;
@@ -13,7 +13,7 @@ function DrinkGridTile({ name, image, onPress }: Props) {
   return (
     <View style={styles.gridItem}>
       <Pressable
-        android_ripple={{ color: Colors.green700}}
+        android_ripple={{ color: Colors.green700 }}
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.buttonPressed : null,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: Colors.green700,
     marginHorizontal: 4,
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
   image: {
     flex: 1,
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: "100%",
     height: "80%",
-   
+
   },
   titleContainer: {
     height: "20%",

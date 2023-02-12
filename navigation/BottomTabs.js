@@ -3,7 +3,7 @@ import Colors from "../constants/colors";
 import DrinksScreen from "../screens/DrinksScreen";
 import { Ionicons } from "@expo/vector-icons";
 import FavoritesScreen from "../screens/FavoritesScreen";
-import BreathalyzerScreen from "../screens/BreathalyzerScreen";
+import BreathalyserScreen from "../screens/BreathalyserScreen";
 import React from "react";
 
 const BottomTab = createBottomTabNavigator();
@@ -55,7 +55,7 @@ function BottomTabsNavigator() {
       />
       <BottomTab.Screen
         name="Breathalyser"
-        component={BreathalyzerScreen}
+        component={BreathalyserScreen}
         options={{
           title: "How Drunk Are You ?",
           tabBarIcon: ({ color, size }) => (

@@ -1,9 +1,8 @@
 import { Text, View, StyleSheet } from "react-native";
-import Colors from "../../constants/colors";
 import { CheckBox } from "react-native-elements";
-import { useState } from "react";
+import Colors from "../../constants/colors";
 
-function RadioButton({
+function BreathalyserGenderButton({
   label,
   invalid,
   checkedMale,
@@ -56,7 +55,7 @@ function RadioButton({
   );
 }
 
-export default RadioButton;
+export default BreathalyserGenderButton;
 
 const styles = StyleSheet.create({
   compContainer: {

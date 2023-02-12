@@ -1,19 +1,10 @@
-import {
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-  Modal,
-  Button,
-  Alert,
-} from "react-native";
-import BreathalyzerForm from "../components/Breathalyzer/BreathalyserForm";
+import { React, useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Alert } from "react-native";
+import BreathalyserForm from "../components/breathalyser/BreathalyserForm";
 import Colors from "../constants/colors";
-import React from "react";
 import { fetchRandomDrink } from "../util/http";
-import { useEffect, useState } from "react";
 
-function BreathalyzerScreen({ navigation }) {
+function BreathalyserScreen({ navigation }) {
   const [randomDrink, setRandomDrink] = useState([]);
 
   useEffect(() => {
@@ -23,17 +14,15 @@ function BreathalyzerScreen({ navigation }) {
         setRandomDrink(fetchedRandomDrink);
       } catch (error) {
         console.log(error);
-      } finally {
-        // setLoading(false);
       }
     }
     getRandomDrink();
   }, []);
 
   function checkHandler(formData) {
-    if (formData.amountOfAlkohol == 0 || formData.strengthOfAlkohol == 0) {
+    if (formData.amountOfAlcohol == 0 || formData.strengthOfAlcohol == 0) {
       let message = "";
-      if (formData.amountOfAlkohol == 0) {
+      if (formData.amountOfAlcohol == 0) {
         message = "You drunk 0 ml of alcohol";
       } else {
         message = "You drunk only 0 % alcohol";
@@ -65,13 +54,13 @@ function BreathalyzerScreen({ navigation }) {
         { cancelable: false }
       );
     } else {
-      let message = `You drunk ${formData.amountOfAlkohol} ml of ${formData.strengthOfAlkohol} % alcohol!`;
+      let message = `You drunk ${formData.amountOfAlcohol} ml of ${formData.strengthOfAlcohol} % alcohol!`;
       Alert.alert(
         `${formData.name}, You are drunk !`,
         `${message}`,
         [
           {
-            text: "Never mind",
+            text: "Nevermind",
             onPress: () => {
               navigation.navigate("DrinkDetailScreen", {
                 drinkId: randomDrink[0].drinkId,
@@ -97,17 +86,17 @@ function BreathalyzerScreen({ navigation }) {
 
   return (
     <ScrollView style={styles.appContainer}>
-      <BreathalyzerForm onSubmitBtn={checkHandler} />
+      <BreathalyserForm onSubmitBtn={checkHandler} />
     </ScrollView>
   );
 }
 
-export default BreathalyzerScreen;
+export default BreathalyserScreen;
 
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     backgroundColor: Colors.green300,
-    paddingBottom:460
+    paddingBottom: 460
   },
 });

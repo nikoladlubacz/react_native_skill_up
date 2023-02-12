@@ -1,15 +1,14 @@
-import React from "react";
+import { React, useContext } from "react";
 import { View, StyleSheet, Image, Text, Pressable } from "react-native";
-import Colors from "../constants/colors";
-import { AlcoholContext } from "../util/alcoholContext";
-import { useContext } from "react";
+import Colors from "../../constants/colors";
+import { AlcoholContext } from "../../util/alcoholContext";
 
-function MenuItem({ name, image, onPress }) {
-  const alkoholCtx = useContext(AlcoholContext);
-  const alkohol = alkoholCtx.alcoholName;
+function CategoryItem({ name, image, onPress }) {
+  const alcoholCtx = useContext(AlcoholContext);
+  const alcohol = alcoholCtx.alcoholName;
 
   const imageStyle =
-    alkohol == name ? styles.pressedImageContainer : styles.imageContainer;
+    alcohol == name ? styles.pressedImageContainer : styles.imageContainer;
 
   return (
     <View style={styles.screen}>
@@ -23,7 +22,7 @@ function MenuItem({ name, image, onPress }) {
   );
 }
 
-export default MenuItem;
+export default CategoryItem;
 
 const styles = StyleSheet.create({
   screen: {

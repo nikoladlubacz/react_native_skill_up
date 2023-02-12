@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const AlcoholContext = createContext({
   alcoholName: "",
-  updateAlkoholName: () => { },
+  updateAlcoholName: () => { },
 });
 
 function AlcoholContextProvider({ children }) {

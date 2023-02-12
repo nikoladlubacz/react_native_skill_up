@@ -1,9 +1,4 @@
-import {
-    Text,
-    View,
-    StyleSheet,
-    Image,
-} from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import Colors from "../constants/colors";
 
 function ErrorHandling() {

@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import Colors from "../constants/colors";
+import Colors from "../../constants/colors";
 
 function DetailButton({ children, onPress, width, isPressed }) {
   const buttonInnerStyle = isPressed
@@ -10,7 +10,7 @@ function DetailButton({ children, onPress, width, isPressed }) {
     <View style={[styles.buttonOuterContainer, { width: width }]}>
       <Pressable
         onPress={onPress}
-        android_ripple={{ color: Colors.green700}}
+        android_ripple={{ color: Colors.green700 }}
       >
         <View style={buttonInnerStyle}>
           <Text style={styles.buttonText}>{children}</Text>

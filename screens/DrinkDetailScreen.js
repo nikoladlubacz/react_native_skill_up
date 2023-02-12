@@ -1,9 +1,8 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { View, FlatList, Text, StyleSheet, ActivityIndicator } from "react-native";
-import DrinkItem from "../components/DrinkItem";
-import IconButton from "../components/IconButton";
+import DrinkItem from "../components/drinks/DrinkItem";
+import IconButton from "../components/buttons/IconButton";
 import Colors from "../constants/colors";
-import { useEffect, useState } from "react";
 import { FavoriteDrink } from "../models/favoriteDrink";
 import { deleteFavoriteDrinkById, insertFavoriteDrink } from "../util/database";
 import { fetchDrinkDetails } from "../util/http";
@@ -69,7 +68,7 @@ function DrinkDetailScreen({ route, navigation }) {
       headerTitle: () => {
         return <CustomHeader title={drinkName} />;
       },
-      
+
       headerRight: () => {
         return (
           !fetchingFailed &&

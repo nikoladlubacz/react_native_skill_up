@@ -1,17 +1,13 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
-import Colors from "../constants/colors";
-import DetailButton from "./DetailButton";
-import { useState } from "react";
-import { Dimensions } from 'react-native';
-
+import { React, useState } from "react";
+import { View, Text, StyleSheet, Image, FlatList, Dimensions } from "react-native";
+import Colors from "../../constants/colors";
+import DetailButton from "../buttons/DetailButton";
 
 function DrinkItem(drink) {
   const [ingredientsVisibility, setIngredientsVisibility] = useState(true);
   const [stepsVisibility, setStepsVisibility] = useState();
 
   const windowHeight = Dimensions.get('window').height;
-
 
   const pressedIngrediens = () => {
     setIngredientsVisibility(true);
@@ -84,7 +80,6 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    // height: 350,
     resizeMode: 'cover',
   },
   detailContainer: {

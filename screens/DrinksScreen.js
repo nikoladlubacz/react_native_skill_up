@@ -1,28 +1,26 @@
+import { React, useContext, useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
   FlatList,
   ActivityIndicator,
 } from "react-native";
-import DrinkGridTile from "../components/DrinkGridTile";
-import MenuItem from "../components/MenuItem";
+import DrinkGridTile from "../components/drinks/DrinkGridTile";
+import MenuItem from "../components/drinks/CategoryItem";
 import { MenuLabels } from "../models/menuFactory";
-import { useContext, useEffect, useState } from "react";
-import React from "react";
 import { AlcoholContext } from "../util/alcoholContext";
 import { fetchDrinks } from "../util/http";
 import Colors from "../constants/colors";
 import ErrorHandling from "../components/ErrorHandling";
-import MenuContext from "../components/MenuContext";
+import MenuContext from "../components/buttons/SettingsButton";
 
 function DrinksScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [drinks, setDrinks] = useState([]);
   const [fetchingFailed, setFetchingFailed] = useState(false);
 
-
-  const alkoholCtx = useContext(AlcoholContext);
-  const alkohol = alkoholCtx.alcoholName;
+  const alcoholCtx = useContext(AlcoholContext);
+  const alcohol = alcoholCtx.alcoholName;
 
   useEffect(() => {
     navigation.setOptions({
@@ -37,7 +35,7 @@ function DrinksScreen({ navigation }) {
   useEffect(() => {
     async function getDrinks() {
       try {
-        const fetchedDrinks = await fetchDrinks(alkohol);
+        const fetchedDrinks = await fetchDrinks(alcohol);
         setDrinks(fetchedDrinks);
       } catch (error) {
         setFetchingFailed(true);
@@ -46,7 +44,7 @@ function DrinksScreen({ navigation }) {
       }
     }
     getDrinks();
-  }, [alkohol]);
+  }, [alcohol]);
 
   return (
     <View style={styles.appContainer}>
@@ -64,13 +62,13 @@ function DrinksScreen({ navigation }) {
                   <MenuItem
                     name={item.name}
                     image={item.image}
-                    onPress={() => alkoholCtx.updateAlkoholName(item.name)}
+                    onPress={() => alcoholCtx.updateAlcoholName(item.name)}
                   />
                 )}
               />
             </View>
-            <View style={styles.drinksContainer} 
-          >
+            <View style={styles.drinksContainer}
+            >
               {isLoading ? (
                 <ActivityIndicator size="large" style={styles.indicator} />
               ) : (

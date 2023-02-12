@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import Colors from "../constants/colors";
+import Colors from "../../constants/colors";
 
 function PrimaryButton({ children, onPress, width }) {
   return (
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: Colors.light100,
     fontSize: 18,
-    // textTransform: "uppercase",
   },
   pressed: {
     opacity: 0.75,

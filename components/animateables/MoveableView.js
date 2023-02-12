@@ -1,7 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { Animated } from 'react-native';
 
-
 function MoveableView(props) {
     const fadeAnim = useRef(new Animated.Value(props.start)).current;
 

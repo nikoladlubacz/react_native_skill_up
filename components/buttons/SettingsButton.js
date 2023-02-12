@@ -1,7 +1,4 @@
-import {
-    View,
-    StyleSheet,
-} from "react-native";
+import { View, StyleSheet } from "react-native";
 import {
     Menu,
     MenuOptions,
@@ -9,9 +6,9 @@ import {
     MenuTrigger,
 } from "react-native-popup-menu";
 import { Ionicons } from "@expo/vector-icons";
-import Colors from "../constants/colors";
+import Colors from "../../constants/colors";
 
-function MenuContext() {
+function SettingsButton() {
     return (
         <Menu
             onSelect={(value) => {
@@ -35,7 +32,7 @@ function MenuContext() {
     )
 }
 
-export default MenuContext
+export default SettingsButton
 
 const styles = StyleSheet.create({
     menuContext: {

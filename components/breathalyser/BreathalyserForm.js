@@ -1,12 +1,11 @@
-import { View, StyleSheet, Alert, Text, ScrollView } from "react-native";
-import { Input, MultipleInput } from "./Input";
-import RadioButton from "./RadioButton";
-
+import { View, StyleSheet, Text } from "react-native";
 import { useState } from "react";
+import { BreathalyserInput, BreathalyserMultipleInput } from "./BreathalyserInput";
+import BreathalyserGenderButton from "./BreathalyserGenderButton";
 import Colors from "../../constants/colors";
-import PrimaryButton from "../PrimaryButton";
+import PrimaryButton from "../buttons/PrimaryButton";
 
-function BreathalyzerForm({ onSubmitBtn }) {
+function BreathalyserForm({ onSubmitBtn }) {
   const [male, setMale] = useState(false);
   const [female, setFemale] = useState(false);
 
@@ -14,8 +13,8 @@ function BreathalyzerForm({ onSubmitBtn }) {
     name: { value: "", isValid: true },
     gender: { value: "", isValid: true },
     weight: { value: "", isValid: true },
-    amountOfAlkohol: { value: "", isValid: true },
-    strengthOfAlkohol: { value: "", isValid: true },
+    amountOfAlcohol: { value: "", isValid: true },
+    strengthOfAlcohol: { value: "", isValid: true },
     date: { value: "", isValid: true },
     time: { value: "", isValid: true },
     email: { value: "", isValid: true },
@@ -48,8 +47,8 @@ function BreathalyzerForm({ onSubmitBtn }) {
       name: inputValue.name.value,
       gender: male ? "male" : "female",
       weight: inputValue.weight.value,
-      amountOfAlkohol: inputValue.amountOfAlkohol.value,
-      strengthOfAlkohol: inputValue.strengthOfAlkohol.value,
+      amountOfAlcohol: inputValue.amountOfAlcohol.value,
+      strengthOfAlcohol: inputValue.strengthOfAlcohol.value,
       date: new Date(inputValue.date.value),
       time: inputValue.time.value,
       email: inputValue.email.value,
@@ -59,15 +58,15 @@ function BreathalyzerForm({ onSubmitBtn }) {
       (male === true && female === false) ||
       (male === false && female === true);
     const weightIsValid = !isNaN(formData.weight) && formData.weight > 0;
-    const amountOfAkoholoIsValid =
-      !isNaN(formData.amountOfAlkohol) &&
-      formData.amountOfAlkohol >= 0 &&
-      formData.amountOfAlkohol.trim();
-    const strenghtOfAkoholoIsValid =
-      !isNaN(formData.strengthOfAlkohol) &&
-      formData.strengthOfAlkohol >= 0 &&
-      formData.strengthOfAlkohol <= 100 &&
-      formData.strengthOfAlkohol.trim();
+    const amountOfAlcoholIsValid =
+      !isNaN(formData.amountOfAlcohol) &&
+      formData.amountOfAlcohol >= 0 &&
+      formData.amountOfAlcohol.trim();
+    const strengthOfAlcoholIsValid =
+      !isNaN(formData.strengthOfAlcohol) &&
+      formData.strengthOfAlcohol >= 0 &&
+      formData.strengthOfAlcohol <= 100 &&
+      formData.strengthOfAlcohol.trim();
     const dateIsValid = formData.date.toString() !== "Invalid Date";
     const timeIsValid = regTime.test(formData.time) === true;
     const emailIsValid = regEmail.test(formData.email) === true;
@@ -76,8 +75,8 @@ function BreathalyzerForm({ onSubmitBtn }) {
       !nameIsValid ||
       !genderIsValid ||
       !weightIsValid ||
-      !amountOfAkoholoIsValid ||
-      !strenghtOfAkoholoIsValid ||
+      !amountOfAlcoholIsValid ||
+      !strengthOfAlcoholIsValid ||
       !dateIsValid ||
       !timeIsValid ||
       !emailIsValid
@@ -90,13 +89,13 @@ function BreathalyzerForm({ onSubmitBtn }) {
             value: curInputValues.weight.value,
             isValid: weightIsValid,
           },
-          amountOfAlkohol: {
-            value: curInputValues.amountOfAlkohol.value,
-            isValid: amountOfAkoholoIsValid,
+          amountOfAlcohol: {
+            value: curInputValues.amountOfAlcohol.value,
+            isValid: amountOfAlcoholIsValid,
           },
-          strengthOfAlkohol: {
-            value: curInputValues.strengthOfAlkohol.value,
-            isValid: strenghtOfAkoholoIsValid,
+          strengthOfAlcohol: {
+            value: curInputValues.strengthOfAlcohol.value,
+            isValid: strengthOfAlcoholIsValid,
           },
           date: { value: curInputValues.date.value, isValid: dateIsValid },
           time: { value: curInputValues.time.value, isValid: timeIsValid },
@@ -112,15 +111,15 @@ function BreathalyzerForm({ onSubmitBtn }) {
     !inputValue.name.isValid ||
     !inputValue.gender.isValid ||
     !inputValue.weight.isValid ||
-    !inputValue.amountOfAlkohol.isValid ||
-    !inputValue.strengthOfAlkohol.isValid ||
+    !inputValue.amountOfAlcohol.isValid ||
+    !inputValue.strengthOfAlcohol.isValid ||
     !inputValue.date.isValid ||
     !inputValue.time.isValid ||
     !inputValue.email.isValid;
 
   return (
     <View style={styles.container}>
-      <Input
+      <BreathalyserInput
         label="Your name:"
         measurementUnit=""
         invalid={!inputValue.name.isValid}
@@ -131,15 +130,15 @@ function BreathalyzerForm({ onSubmitBtn }) {
           value: inputValue.name.value,
         }}
       />
-      <RadioButton
+      <BreathalyserGenderButton
         label="Choose your gender:"
         invalid={!inputValue.gender.isValid}
         checkedMale={male}
         checkedFemale={female}
         onPressMale={genderMale}
         onPressFemale={genderFemale}
-      ></RadioButton>
-      <Input
+      ></BreathalyserGenderButton>
+      <BreathalyserInput
         label="Your weight:"
         suffix="kg"
         invalid={!inputValue.weight.isValid}
@@ -149,26 +148,26 @@ function BreathalyzerForm({ onSubmitBtn }) {
           value: inputValue.weight.value,
         }}
       />
-      <MultipleInput
+      <BreathalyserMultipleInput
         label="Enter the amount and strength of alcohol which you consumed:"
         invalid={
-          !inputValue.amountOfAlkohol.isValid ||
-          !inputValue.strengthOfAlkohol.isValid
+          !inputValue.amountOfAlcohol.isValid ||
+          !inputValue.strengthOfAlcohol.isValid
         }
         textInputConfig1={{
           keyboardType: "number-pad",
-          onChangeText: inputChangedHandle.bind(this, "amountOfAlkohol"),
-          value: inputValue.amountOfAlkohol.value,
+          onChangeText: inputChangedHandle.bind(this, "amountOfAlcohol"),
+          value: inputValue.amountOfAlcohol.value,
         }}
         suffix1="ml"
         textInputConfig2={{
           keyboardType: "number-pad",
-          onChangeText: inputChangedHandle.bind(this, "strengthOfAlkohol"),
-          value: inputValue.strengthOfAlkohol.value,
+          onChangeText: inputChangedHandle.bind(this, "strengthOfAlcohol"),
+          value: inputValue.strengthOfAlcohol.value,
         }}
         suffix2="%"
-      ></MultipleInput>
-      <MultipleInput
+      ></BreathalyserMultipleInput>
+      <BreathalyserMultipleInput
         label="When you started drinking alcohol:"
         invalid={!inputValue.date.isValid || !inputValue.time.isValid}
         textInputConfig1={{
@@ -184,7 +183,7 @@ function BreathalyzerForm({ onSubmitBtn }) {
           value: inputValue.date.value,
         }}
       />
-      <Input
+      <BreathalyserInput
         label="Your email:"
         invalid={!inputValue.email.isValid}
         textInputConfig={{
@@ -207,18 +206,16 @@ function BreathalyzerForm({ onSubmitBtn }) {
   );
 }
 
-export default BreathalyzerForm;
+export default BreathalyserForm;
 
 const styles = StyleSheet.create({
   container: {
-    // flex:1,
     padding: 16,
-    // paddingBottom:360
   },
   button: {
     alignItems: "center",
     marginTop: 24,
-    marginBottom:60
+    marginBottom: 60
   },
   radioButtonContainer: {
     flexDirection: "row",

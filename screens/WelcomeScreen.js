@@ -1,14 +1,11 @@
-import { View, StyleSheet, Button, Text, Image } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
+import { React, useEffect, useState } from "react";
+import { View, StyleSheet, Image, Dimensions } from "react-native";
+import PrimaryButton from "../components/buttons/PrimaryButton";
 import Colors from "../constants/colors";
-import React from "react";
-import FadeInView from "../components/FadeInView"
-import MoveableView from "../components/MoveableView";
-import { Dimensions } from 'react-native';
-import { useEffect, useState } from "react";
+import FadeInView from "../components/animateables/FadeInView"
+import MoveableView from "../components/animateables/MoveableView";
 import { fetchRandomDrink } from "../util/http";
 import { useIsFocused } from "@react-navigation/native";
-
 
 function WelcomeScreen({ navigation }) {
   const [randomDrink, setRandomDrink] = useState([]);
@@ -28,8 +25,6 @@ function WelcomeScreen({ navigation }) {
         setRandomDrink(fetchedRandomDrink);
       } catch (error) {
         console.log(error);
-      } finally {
-        // setLoading(false);
       }
     }
     getRandomDrink();
@@ -82,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   imageContainer: {
-    flex: 1, 
+    flex: 1,
     justifyContent: "center"
   },
   image: {

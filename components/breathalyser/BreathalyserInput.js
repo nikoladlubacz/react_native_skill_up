@@ -1,7 +1,7 @@
 import { Text, TextInput, View, StyleSheet } from "react-native";
 import Colors from "../../constants/colors";
 
-function Input({ label, invalid, textInputConfig, suffix }) {
+function BreathalyserInput({ label, invalid, textInputConfig, suffix }) {
   return (
     <View style={styles.compContainer}>
       <Text style={[styles.label, invalid && styles.invalidLabel]}>
@@ -19,7 +19,7 @@ function Input({ label, invalid, textInputConfig, suffix }) {
   );
 }
 
-function MultipleInput({
+function BreathalyserMultipleInput({
   label,
   invalid,
   textInputConfig1,
@@ -54,7 +54,7 @@ function MultipleInput({
   );
 }
 
-export { Input, MultipleInput };
+export { BreathalyserInput as BreathalyserInput, BreathalyserMultipleInput as BreathalyserMultipleInput };
 
 const styles = StyleSheet.create({
   compContainer: {
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
   suffix: {
     paddingRight: 24,
     paddingLeft: 4,
-    // fontWeight: "bold",
     color: Colors.green700,
   },
   titleCheckbox: {
