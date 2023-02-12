@@ -24,7 +24,7 @@ function FavoritesScreen({ navigation }) {
     if (isFocused) {
       loadFavoriteDrinks();
     }
-  }, [isFocused, loadedFavoriteDrinks]);
+  }, [isFocused]);
 
   function renderDrinkItem(id, name, image) {
     return (
@@ -58,7 +58,7 @@ function FavoritesScreen({ navigation }) {
           data={loadedFavoriteDrinks}
           numColumns={2}
           renderItem={({ item }) =>
-            renderDrinkItem(item.drinkNumber, item.nameDrink, item.image)
+            renderDrinkItem(item.drinkId, item.nameDrink, item.image)
           }
         />
       </View>

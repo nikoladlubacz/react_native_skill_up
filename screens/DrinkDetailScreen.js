@@ -3,12 +3,12 @@ import { View, FlatList, Text, StyleSheet, ActivityIndicator } from "react-nativ
 import DrinkItem from "../components/drinks/DrinkItem";
 import IconButton from "../components/buttons/IconButton";
 import Colors from "../constants/colors";
-import { FavoriteDrink } from "../models/favoriteDrink";
 import { deleteFavoriteDrinkById, insertFavoriteDrink } from "../util/database";
 import { fetchDrinkDetails } from "../util/http";
 import { fetchFavoriteDrinkById } from "../util/database";
 import { useIsFocused } from "@react-navigation/native";
 import ErrorHandling from "../components/ErrorHandling";
+import Drink from "../models/drink";
 
 function DrinkDetailScreen({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
@@ -22,35 +22,42 @@ function DrinkDetailScreen({ route, navigation }) {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    async function loadFavoriteDrinkById() {
-      const favoriteDrink = await fetchFavoriteDrinkById(drinkId);
-      setDrinkIsFavorite(favoriteDrink.length > 0 ? true : false);
-    }
     async function getDrink() {
       try {
         const fetchedDrink = await fetchDrinkDetails(drinkId);
         setDrinkDetailsList(fetchedDrink);
       } catch (error) {
         setFetchingFailed(true);
-      } finally {
-        setLoading(false);
       }
     }
+    
+    async function loadFavoriteDrinkById() {
+      const favoriteDrink = await fetchFavoriteDrinkById(drinkId);
+      setDrinkIsFavorite(favoriteDrink.length > 0);
+      if (favoriteDrink.length > 0) {
+        setDrinkDetailsList(favoriteDrink);
+      } else {
+        getDrink();
+      }
+      setLoading(false);
+    }
+    
     if (isFocused) {
       loadFavoriteDrinkById();
-      getDrink();
     }
-  }, [isFocused, drinkIsFavorite]);
+  }, [isFocused]);
 
   function favoriteDrinkHandler() {
     if (drinkIsFavorite) {
       deleteFavoriteDrinkById(drinkId);
       setDrinkIsFavorite(false);
     } else {
-      const favoriteDrink = new FavoriteDrink(
+      const favoriteDrink = new Drink(
+        drinkDetailsList[0].drinkId,
         drinkDetailsList[0].nameDrink,
         drinkDetailsList[0].image,
-        drinkDetailsList[0].drinkId
+        drinkDetailsList[0].instructions,
+        drinkDetailsList[0].ingredients
       );
       insertFavoriteDrink(favoriteDrink);
       setDrinkIsFavorite(true);
