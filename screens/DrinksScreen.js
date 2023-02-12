@@ -41,7 +41,6 @@ function DrinksScreen({ navigation }) {
         setDrinks(fetchedDrinks);
       } catch (error) {
         setFetchingFailed(true);
-        console.log(error);
       } finally {
         setLoading(false);
       }

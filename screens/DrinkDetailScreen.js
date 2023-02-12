@@ -9,11 +9,13 @@ import { deleteFavoriteDrinkById, insertFavoriteDrink } from "../util/database";
 import { fetchDrinkDetails } from "../util/http";
 import { fetchFavoriteDrinkById } from "../util/database";
 import { useIsFocused } from "@react-navigation/native";
+import ErrorHandling from "../components/ErrorHandling";
 
 function DrinkDetailScreen({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [drinkDetailsList, setDrinkDetailsList] = useState([]);
   const [drinkIsFavorite, setDrinkIsFavorite] = useState();
+  const [fetchingFailed, setFetchingFailed] = useState(false);
 
   const drinkId = route.params.drinkId;
   const drinkName = route.params.drinkName;
@@ -26,12 +28,11 @@ function DrinkDetailScreen({ route, navigation }) {
       setDrinkIsFavorite(favoriteDrink.length > 0 ? true : false);
     }
     async function getDrink() {
-      setLoading(false);
       try {
         const fetchedDrink = await fetchDrinkDetails(drinkId);
         setDrinkDetailsList(fetchedDrink);
       } catch (error) {
-        console.log(error);
+        setFetchingFailed(true);
       } finally {
         setLoading(false);
       }
@@ -68,8 +69,10 @@ function DrinkDetailScreen({ route, navigation }) {
       headerTitle: () => {
         return <CustomHeader title={drinkName} />;
       },
+      
       headerRight: () => {
         return (
+          !fetchingFailed &&
           <IconButton
             icon={drinkIsFavorite ? "star" : "star-outline"}
             color={Colors.light100}
@@ -85,15 +88,23 @@ function DrinkDetailScreen({ route, navigation }) {
   }
 
   return (
-    <View>
-      {isLoading ? (
-        <ActivityIndicator size="large" style={styles.indicator} />
-      ) : (
-        <FlatList
-          data={drinkDetailsList}
-          renderItem={({ item }) => renderDrinkDetailItem(item)}
-        />)}
+    <View style={{ flex: 1 }}>
+      {fetchingFailed ?
+        (
+          <ErrorHandling />
+        ) :
+        (
+          <View>
+            {isLoading ? (
+              <ActivityIndicator size="large" style={styles.indicator} />
+            ) : (
+              <FlatList
+                data={drinkDetailsList}
+                renderItem={({ item }) => renderDrinkDetailItem(item)}
+              />)}
+          </View>)}
     </View>
+
   );
 }
 
