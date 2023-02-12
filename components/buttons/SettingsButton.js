@@ -7,12 +7,19 @@ import {
 } from "react-native-popup-menu";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/colors";
+import { useNavigation } from '@react-navigation/native';
 
 function SettingsButton() {
+    const navigation = useNavigation();
+
     return (
         <Menu
+
             onSelect={(value) => {
-                console.log("kliknąłeś: " + value);
+                switch (value) {
+                    case 1: navigation.navigate("NotificationsScreen"); break
+                    case 2: navigation.navigate("AuthenticationScreen"); break
+                }
             }}
         >
             <MenuTrigger>
@@ -26,7 +33,7 @@ function SettingsButton() {
             </MenuTrigger>
             <MenuOptions>
                 <MenuOption value={1} text="Notifications" />
-                <MenuOption value={2} text="Autentication" />
+                <MenuOption value={2} text="Authentication" />
             </MenuOptions>
         </Menu>
     )

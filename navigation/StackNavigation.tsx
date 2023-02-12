@@ -4,11 +4,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Colors from "../constants/colors";
 import BottomTabsNavigator from "../navigation/BottomTabs";
 import React from 'react'
+import NotificationsScreen from "../screens/NotificationsScreen";
+import AuthenticationScreen from "../screens/AuthenticationScreen";
 
 type RootStackParamList = {
     WelcomeScreen: undefined;
     DrinksScreen: undefined;
     DrinkDetailScreen: { drinkId: number, drinkName: string };
+    NotificationsScreen: undefined;
+    AuthenticationScreen: undefined
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -22,7 +26,7 @@ function StackNavigation() {
                 headerTintColor: Colors.light100,
                 headerTitleAlign: "center",
                 headerTitleStyle: {
-                    fontSize: 50,
+                    fontSize: 30,
                 },
             }
             }
@@ -47,6 +51,20 @@ function StackNavigation() {
                 component={DrinkDetailScreen}
                 options={{
                     contentStyle: { backgroundColor: Colors.green100 },
+                }}
+            />
+            <Stack.Screen
+                name="NotificationsScreen"
+                component={NotificationsScreen}
+                options={{
+                    title: "Notifications",
+                }}
+            />
+            <Stack.Screen
+                name="AuthenticationScreen"
+                component={AuthenticationScreen}
+                options={{
+                    title: "Authentication",
                 }}
             />
         </Stack.Navigator>)

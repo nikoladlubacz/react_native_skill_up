@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     marginTop: 24,
-    marginBottom:80
+    marginBottom: 80
   },
   radioButtonContainer: {
     flexDirection: "row",

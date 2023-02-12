@@ -12,7 +12,7 @@ import { AlcoholContext } from "../util/alcoholContext";
 import { fetchDrinks } from "../util/http";
 import Colors from "../constants/colors";
 import ErrorHandling from "../components/ErrorHandling";
-import MenuContext from "../components/buttons/SettingsButton";
+import SettingsButton from "../components/buttons/SettingsButton";
 
 function DrinksScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ function DrinksScreen({ navigation }) {
     navigation.setOptions({
       headerRight: () => {
         return (
-          <MenuContext />
+          <SettingsButton />
         )
       }
     })
