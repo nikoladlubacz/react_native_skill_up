@@ -13,7 +13,7 @@ function ErrorHandling() {
             <View style={styles.imageContainer}>
                 <Image
                     style={styles.image}
-                    source={require("../assets/gif/giphy.gif")} />
+                    source={require("../assets/gif/no-internet.gif")} />
             </View>
         </View>
     )
