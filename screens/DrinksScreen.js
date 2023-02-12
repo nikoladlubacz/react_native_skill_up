@@ -11,15 +11,9 @@ import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { AlkoholContext } from "../store/alkoholContext";
 import { fetchDrinks } from "../util/http";
-import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/colors";
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from "react-native-popup-menu";
 import ErrorHandling from "../components/ErrorHandling";
+import MenuContext from "../components/MenuContext";
 
 function DrinksScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
@@ -31,33 +25,16 @@ function DrinksScreen({ navigation }) {
   const alkohol = alkoholCtx.alkoholName;
 
   useEffect(() => {
-    // navigation.setOptions({
-    //   headerRight: () => {
-    //     return (
-    //       <Menu
-    //         onSelect={(value) => {
-    //           console.log("kliknąłeś: " + value);
-    //         }}
-    //       >
-    //         <MenuTrigger>
-    //           <View style={styles.menuContext}>
-    //             <Ionicons
-    //               name="settings-outline"
-    //               color={Colors.light100}
-    //               size={24}
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <MenuContext />
+        )
+      }
+    })
+  }, [])
 
-    //             />
-    //           </View>
-    //         </MenuTrigger>
-    //         <MenuOptions>
-    //           <MenuOption value={1} text="Notifications" />
-    //           <MenuOption value={2} text="Autentication" />
-    //         </MenuOptions>
-    //       </Menu>
-    //     );
-    //   },
-    // });
-
+  useEffect(() => {
     async function getDrinks() {
       try {
         const fetchedDrinks = await fetchDrinks(alkohol);
@@ -79,7 +56,7 @@ function DrinksScreen({ navigation }) {
           <ErrorHandling />
         ) :
         (
-          <View style={{flex:1}}>
+          <View style={{ flex: 1 }}>
             <View style={styles.menuLabelContainer}>
               <FlatList
                 horizontal={true}
@@ -93,7 +70,8 @@ function DrinksScreen({ navigation }) {
                 )}
               />
             </View>
-            <View style={styles.drinksContainer}>
+            <View style={styles.drinksContainer} 
+          >
               {isLoading ? (
                 <ActivityIndicator size="large" style={styles.indicator} />
               ) : (
