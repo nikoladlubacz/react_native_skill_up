@@ -98,7 +98,7 @@ export function deleteFavoriteDrinkById(id) {
       tx.executeSql(
         `DELETE FROM favoriteDrinks3 WHERE drinkNumber = ?`,
         [id],
-        (_, result) => {},
+        (_, result) => { },
         (_, error) => {
           reject(error);
         }

@@ -1,10 +1,15 @@
-import { RootStackParamList } from "../util/types";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import DrinkDetailScreen from "../screens/DrinkDetailScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Colors from "../constants/colors";
 import BottomTabsNavigator from "../navigation/BottomTabs";
 import React from 'react'
+
+type RootStackParamList = {
+    WelcomeScreen: undefined;
+    DrinksScreen: undefined;
+    DrinkDetailScreen: { drinkId: number, drinkName: string };
+};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

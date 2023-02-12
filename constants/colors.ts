@@ -4,11 +4,10 @@ const Colors = {
   green300: "#A2B29F",
   green400: "#859683",
   green500: "#798777",
-  green700: "#333d32",
-  green900: "#20261f",
-  error50: "#fcc4e4",
-  error500: "#d91a1a",
-
+  green700: "#333D32",
+  green900: "#20261F",
+  error50: "#FCC4E4",
+  error500: "#D91A1A",
 };
 
 export default Colors;

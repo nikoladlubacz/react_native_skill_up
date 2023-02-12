@@ -2,9 +2,6 @@ class Drink {
   drinkId: string;
   nameDrink: string;
   image: string;
-  category: string;
-  alcoholic: string;
-  glass: string;
   instructions: string;
   ingredients: string[];
 
@@ -12,18 +9,12 @@ class Drink {
     drinkId: string,
     nameDrink: string,
     image: string,
-    category: string,
-    alcoholic: string,
-    glass: string,
     instructions: string,
     ingredients: string[]
   ) {
     this.drinkId = drinkId;
     this.nameDrink = nameDrink;
     this.image = image;
-    this.category = category;
-    this.alcoholic = alcoholic;
-    this.glass = glass;
     this.instructions = instructions;
     this.ingredients = ingredients;
   }

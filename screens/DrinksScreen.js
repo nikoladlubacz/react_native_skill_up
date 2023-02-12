@@ -6,10 +6,10 @@ import {
 } from "react-native";
 import DrinkGridTile from "../components/DrinkGridTile";
 import MenuItem from "../components/MenuItem";
-import { MenuLabels } from "../data/data";
+import { MenuLabels } from "../models/menuFactory";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
-import { AlkoholContext } from "../store/alkoholContext";
+import { AlcoholContext } from "../util/alcoholContext";
 import { fetchDrinks } from "../util/http";
 import Colors from "../constants/colors";
 import ErrorHandling from "../components/ErrorHandling";
@@ -21,8 +21,8 @@ function DrinksScreen({ navigation }) {
   const [fetchingFailed, setFetchingFailed] = useState(false);
 
 
-  const alkoholCtx = useContext(AlkoholContext);
-  const alkohol = alkoholCtx.alkoholName;
+  const alkoholCtx = useContext(AlcoholContext);
+  const alkohol = alkoholCtx.alcoholName;
 
   useEffect(() => {
     navigation.setOptions({

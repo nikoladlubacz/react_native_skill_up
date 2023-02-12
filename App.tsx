@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useCallback, useEffect, useState } from "react";
-import AlkoholContextProvider from "./store/alkoholContext";
+import AlcoholContextProvider from "./util/alcoholContext";
 import { init } from "./util/database";
 import * as SplashScreen from "expo-splash-screen";
 import { MenuProvider } from "react-native-popup-menu";
@@ -32,11 +32,11 @@ export default function App() {
       <View style={styles.container} onLayout={onLayoutRootView}>
         <StatusBar backgroundColor="#333d32" style="light" />
         <MenuProvider>
-          <AlkoholContextProvider>
+          <AlcoholContextProvider>
             <NavigationContainer>
               <StackNavigation />
             </NavigationContainer>
-          </AlkoholContextProvider>
+          </AlcoholContextProvider>
         </MenuProvider>
       </View>
     </>

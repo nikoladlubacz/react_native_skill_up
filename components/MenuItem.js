@@ -1,12 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Image, Text, Pressable } from "react-native";
 import Colors from "../constants/colors";
-import { AlkoholContext } from "../store/alkoholContext";
+import { AlcoholContext } from "../util/alcoholContext";
 import { useContext } from "react";
 
 function MenuItem({ name, image, onPress }) {
-  const alkoholCtx = useContext(AlkoholContext);
-  const alkohol = alkoholCtx.alkoholName;
+  const alkoholCtx = useContext(AlcoholContext);
+  const alkohol = alkoholCtx.alcoholName;
 
   const imageStyle =
     alkohol == name ? styles.pressedImageContainer : styles.imageContainer;

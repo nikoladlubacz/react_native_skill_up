@@ -1,6 +1,4 @@
 import { View, StyleSheet, Button, Text, Image } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../util/types";
 import PrimaryButton from "../components/PrimaryButton";
 import Colors from "../constants/colors";
 import React from "react";
