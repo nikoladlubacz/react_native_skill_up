@@ -172,12 +172,14 @@ function BreathalyserForm({ onSubmitBtn }) {
         invalid={!inputValue.date.isValid || !inputValue.time.isValid}
         textInputConfig1={{
           placeholder: "HH:MM",
+          placeholderTextColor: Colors.green400,
           keyboardType: "default",
           onChangeText: inputChangedHandle.bind(this, "time"),
           value: inputValue.time.value,
         }}
         textInputConfig2={{
           placeholder: "YYYY-MM-DD",
+          placeholderTextColor: Colors.green400,
           keyboardType: "default",
           onChangeText: inputChangedHandle.bind(this, "date"),
           value: inputValue.date.value,
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     marginTop: 24,
-    marginBottom: 60
+    marginBottom:80
   },
   radioButtonContainer: {
     flexDirection: "row",

@@ -54,7 +54,7 @@ function BreathalyserMultipleInput({
   );
 }
 
-export { BreathalyserInput as BreathalyserInput, BreathalyserMultipleInput as BreathalyserMultipleInput };
+export { BreathalyserInput, BreathalyserMultipleInput };
 
 const styles = StyleSheet.create({
   compContainer: {

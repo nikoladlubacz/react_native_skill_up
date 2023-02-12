@@ -4,6 +4,9 @@ import BreathalyserForm from "../components/breathalyser/BreathalyserForm";
 import Colors from "../constants/colors";
 import { fetchRandomDrink } from "../util/http";
 
+import { setDrunkAlert, setSoberAlert } from "../components/breathalyser/BreathalyserAlert";
+
+
 function BreathalyserScreen({ navigation }) {
   const [randomDrink, setRandomDrink] = useState([]);
 
@@ -21,66 +24,9 @@ function BreathalyserScreen({ navigation }) {
 
   function checkHandler(formData) {
     if (formData.amountOfAlcohol == 0 || formData.strengthOfAlcohol == 0) {
-      let message = "";
-      if (formData.amountOfAlcohol == 0) {
-        message = "You drunk 0 ml of alcohol";
-      } else {
-        message = "You drunk only 0 % alcohol";
-      }
-      Alert.alert(
-        `${formData.name}, You are sober !`,
-        `${message}`,
-        [
-          {
-            text: "Random drink",
-            onPress: () => {
-              navigation.navigate("DrinkDetailScreen", {
-                drinkId: randomDrink[0].drinkId,
-                drinkName: randomDrink[0].nameDrink,
-              });
-            },
-          },
-
-          {
-            text: "Cancel",
-            onPress: () => { },
-            style: "cancel",
-          },
-          {
-            text: "DRINKS",
-            onPress: () => navigation.push("DrinksScreen"),
-          },
-        ],
-        { cancelable: false }
-      );
+      setSoberAlert(formData, navigation, randomDrink);
     } else {
-      let message = `You drunk ${formData.amountOfAlcohol} ml of ${formData.strengthOfAlcohol} % alcohol!`;
-      Alert.alert(
-        `${formData.name}, You are drunk !`,
-        `${message}`,
-        [
-          {
-            text: "Nevermind",
-            onPress: () => {
-              navigation.navigate("DrinkDetailScreen", {
-                drinkId: randomDrink[0].drinkId,
-                drinkName: randomDrink[0].nameDrink,
-              });
-            },
-          },
-
-          {
-            text: "Cancel",
-            onPress: () => { },
-            style: "cancel",
-          },
-          {
-            text: "DRINKS",
-            onPress: () => navigation.push("DrinksScreen"),
-          },
-        ],
-        { cancelable: false }
-      );
+      setDrunkAlert(formData, navigation, randomDrink);
     }
   }
 
@@ -89,6 +35,8 @@ function BreathalyserScreen({ navigation }) {
       <BreathalyserForm onSubmitBtn={checkHandler} />
     </ScrollView>
   );
+
+ 
 }
 
 export default BreathalyserScreen;
