@@ -3,13 +3,6 @@ import DrinkGridTile from "../components/drinks/DrinkGridTile";
 import { fetchFavoriteDrinks } from "../util/database";
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { deleteFavoriteDrinkById } from "../util/database";
-import {
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from "react-native-popup-menu";
 import Colors from "../constants/colors";
 
 function FavoritesScreen({ navigation }) {
@@ -31,8 +24,6 @@ function FavoritesScreen({ navigation }) {
   function renderDrinkItem(id, name, image) {
     return (
       <View style={styles.appContainer}>
-        <Menu onSelect={() => deleteFavoriteDrinkById(id)}>
-          <MenuTrigger>
             <DrinkGridTile
               id={id}
               name={name}
@@ -44,11 +35,6 @@ function FavoritesScreen({ navigation }) {
                 });
               }}
             />
-          </MenuTrigger>
-          <MenuOptions>
-            <MenuOption value={1} text="Delete" />
-          </MenuOptions>
-        </Menu>
       </View>
     );
   }
