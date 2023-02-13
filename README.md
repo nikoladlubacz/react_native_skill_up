@@ -1,6 +1,6 @@
 # Drink Advisor
 
-## Android app only, made with Expo.
+### Android app only, made with Expo.
 
 1. The application has few screens that we go to using appropriate buttons or from bottom tab bar.
 2. The Drinks page displays a list of drinks sorted by the type of alcohol which is selected. Drinks are fetched from an external API -https://www.thecocktaildb.com/api.php.
