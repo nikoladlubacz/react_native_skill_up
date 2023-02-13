@@ -1,4 +1,4 @@
-# react_native_skill_up
+# Drink Advisor
 
 Android app only, made with Expo.
 
